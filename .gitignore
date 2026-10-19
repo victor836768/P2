@@ -7,3 +7,8 @@ __MAC*
 *bak
 *~
 db.v4/
+__pycache__/
+resultats/db/
+resultats/*.ps
+resultats/*.pdf
+resultats/*.vad

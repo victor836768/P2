@@ -1,205 +1,154 @@
-PAV - P2: detección de actividad vocal (VAD)
-============================================
+# P2 — Detecció d'activitat vocal
 
-Esta práctica se distribuye a través del repositorio GitHub [Práctica 2](https://github.com/albino-pav/P2),
-y una parte de su gestión se realizará mediante esta web de trabajo colaborativo.  Al contrario que Git,
-GitHub se gestiona completamente desde un entorno gráfico bastante intuitivo. Además, está razonablemente
-documentado, tanto internamente, mediante sus [Guías de GitHub](https://guides.github.com/), como
-externamente, mediante infinidad de tutoriales, guías y vídeos disponibles gratuitamente en internet.
+Jordi Albareda Fortuny · Grup 41 · Lloc XX
 
+## Compilació i execució
 
-Inicialización del repositorio de la práctica.
-----------------------------------------------
+Necessito Meson, Ninja i `libsndfile`.
 
-Para cargar los ficheros en su ordenador personal debe seguir los pasos siguientes:
+```sh
+meson setup bin
+ninja -C bin
+bin/vad -i pav_41XX1.wav -o pav_41XX1.vad
+```
 
-*  Abra una cuenta GitHub para gestionar esta y el resto de prácticas del curso.
-*  Cree un repositorio GitHub con el contenido inicial de la práctica (sólo debe hacerlo uno de los
-  integrantes del grupo de laboratorio, cuya página GitHub actuará de repositorio central del grupo):
-  -  Acceda la página de la [Práctica 2](https://github.com/albino-pav/P2).
-  -  En la parte superior derecha encontrará el botón **`Fork`**. Apriételo y, después de unos segundos,
-    se creará en su cuenta GitHub un proyecto con el mismo nombre (**P2**). Si ya tuviera uno con ese 
-    nombre, se utilizará el nombre **P2-1**, y así sucesivamente.
-*  Habilite al resto de miembros del grupo como *colaboradores* del proyecto; de este modo, podrán
-  subir sus modificaciones al repositorio central:
-  -  En la página principal del repositorio, en la pestaña **:gear:`Settings`**, escoja la opción 
-    **Collaborators** y añada a su compañero de prácticas.
-  -  Éste recibirá un email solicitándole confirmación. Una vez confirmado, tanto él como el
-    propietario podrán gestionar el repositorio, por ejemplo: crear ramas en él o subir las
-    modificaciones de su directorio local de trabajo al repositorio GitHub.
-*  En la página principal del repositorio, localice el botón **Branch: master** y úselo para crear
-  una rama nueva con los primeros apellidos de los integrantes del equipo de prácticas separados por
-  guion (**fulano-mengano**).
-*  Todos los miembros del grupo deben realizar su copia local en su ordenador personal.
-  -  Copie la dirección de su copia del repositorio apretando en el botón **Clone or download**.
-    Asegúrese de usar *Clone with HTTPS*.
-  -  Abra una sesión de Bash en su ordenador personal y vaya al directorio **PAV**. Desde ahí, ejecute:
+`meson bin` és la forma antiga de `meson setup bin`. Amb `-v` mostro temps, estat intern, potència i llindar. Les etiquetes del fitxer de sortida són només `S` i `V`.
 
-    ```.sh
-    git clone dirección-del-fork-de-la-práctica
-    ```
+## Etiquetatge de veu i silenci
 
-  -  Vaya al directorio de la práctica `cd P2`.
+Reutilitzo la gravació de P1: 9,536 s, mono, PCM de 16 bits i 16 kHz. El nom és `pav_41XX1.wav`: grup 41, lloc XX i gravació 1.
 
-  -  Cambie a la rama **fulano-mengano** con la orden:
+Fixo els límits per inspecció visual de la forma d'ona i la potència, abans de comparar-los amb el detector. Són aproximats; no marco les pauses curtes dins d'una frase.
 
-    ```.sh
-    git checkout fulano-mengano
-    ```
+| Inici (s) | Final (s) | Etiqueta |
+|---:|---:|:---:|
+| 0,000 | 1,410 | S |
+| 1,410 | 2,850 | V |
+| 2,850 | 3,340 | S |
+| 3,340 | 4,700 | V |
+| 4,700 | 5,620 | S |
+| 5,620 | 8,150 | V |
+| 8,150 | 9,536 | S |
 
-*  A partir de este momento, todos los miembros del grupo de prácticas pueden trabajar en su directorio
-  local del modo habitual, usando el repositorio remoto en GitHub como repositorio central para el trabajo colaborativo
-  de los distintos miembros del grupo de prácticas o como copia de seguridad.
-  -  Puede *confirmar* versiones del proyecto en su directorio local con las órdenes siguientes:
+Cada fila de [pav_41XX1.lab](pav_41XX1.lab) conté inici, final i etiqueta.
 
-    ```.sh
-    git add .
-    git commit -m "Mensaje del commit"
-    ```
+![WaveSurfer: senyal, potència, ZCR, referència i detector](img/wavesurfer.png)
 
-  -  Las versiones confirmadas, y sólo ellas, se almacenan en el repositorio y pueden ser accedidas en cualquier momento.
+De dalt a baix: forma d'ona, potència, ZCR, referència visual en negre i detecció automàtica en blau.
 
-*  Para interactuar con el contenido remoto en GitHub es necesario que los cambios en el directorio local estén confirmados.
+### Llindar de potència
 
-  -  Puede comprobar si el directorio está *limpio* (es decir, si la versión actual está confirmada) usando el comando
-    `git status`.
+El silenci inicial complet té una potència mitjana de **−52,40 dB**. Els primers 100 ms, que faig servir per inicialitzar el detector, donen **−53,60 dB**.
 
-  -  La versión actual del directorio local se sube al repositorio remoto con la orden:
+Trio un marge de **6 dB** sobre el soroll: el llindar inicial és aproximadament **−47,60 dB**. Durant el silenci actualitzo la referència amb `soroll = 0.98 * soroll + 0.02 * potència`.
 
-    ```.sh
-    git push
-    ```
+### Duracions mínimes
 
-    *  Si el repositorio remoto contiene cambios no presentes en el directorio local, `git` puede negarse
-      a subir el nuevo contenido.
+- Veu: **80 ms** per descartar pics curts.
+- Silenci: **150 ms** per no tallar pauses breus dins de les paraules.
 
-      -  En ese caso, lo primero que deberemos hacer es incorporar los cambios presentes en el repositorio
-        GitHub con la orden `git pull`.
+Les dues pauses internes de la referència duren 490 i 920 ms.
 
-      -  Es posible que, al hacer el `git pull` aparezcan *conflictos*; es decir, ficheros que se han modificado
-        tanto en el directorio local como en el repositorio GitHub y que `git` no sabe cómo combinar.
+### Creuaments per zero
 
-      -  Los conflictos aparecen marcados con cadenas del estilo `>>>>`, `<<<<` y `====`. Los ficheros correspondientes
-        deben ser editados para decidir qué versión preferimos conservar. Un editor avanzado, del estilo de Microsoft
-        Visual Studio Code, puede resultar muy útil para localizar los conflictos y resolverlos.
+El ZCR mitjà del silenci inicial és **346 Hz** i el màxim de la gravació és **4377 Hz**. Augmenta en alguns sons de poca amplitud, però no separa sempre veu i silenci. El represento per analitzar-lo; el detector decideix amb potència i duració.
 
-      -  Tras resolver los conflictos, se ha de confirmar los cambios con `git commit` y ya estaremos en condiciones
-        de subir la nueva versión a GitHub con el comando `git push`.
+## Detector
 
+Reutilitzo `compute_power()` de P1. Processo blocs de 10 ms amb cinc estats:
 
-  -  Para bajar al directorio local el contenido del repositorio GitHub hay que ejecutar la orden:
+1. **INIT:** estimo el soroll amb la mitjana de potències lineals dels primers 100 ms.
+2. **SILENCE:** espero que la potència superi el llindar.
+3. **MAYBE_VOICE:** confirmo la veu després de 80 ms seguits per sobre del llindar.
+4. **VOICE:** espero una baixada de potència.
+5. **MAYBE_SILENCE:** confirmo el silenci després de 150 ms seguits per sota del llindar.
 
-    ```.sh
-    git pull
-    ```
-  
-    *  Si el repositorio local contiene cambios no presentes en el directorio remoto, `git` puede negarse a bajar
-      el contenido de este último.
+Si una candidatura és massa curta, mantinc l'estat anterior. Quan confirmo un canvi, situo el límit al primer bloc provisional. Al final del fitxer resolc els blocs pendents amb l'última decisió confirmada i incloc les mostres del darrer bloc incomplet.
 
-      -  La resolución de los posibles conflictos se realiza como se explica más arriba para
-        la subida del contenido local con el comando `git push`.
+Només guardo les mostres d'un bloc i els comptadors de l'autòmat. No llegeixo blocs futurs ni les etiquetes de referència per detectar la veu.
 
+### Comparació amb la referència
 
+![Comparació entre referència i detector](img/comparacio_vad.png)
 
-*  Al final de la práctica, la rama **fulano-mengano** del repositorio GitHub servirá para remitir la
-  práctica para su evaluación utilizando el mecanismo *pull request*.
-  -  Vaya a la página principal de la copia del repositorio y asegúrese de estar en la rama
-    **fulano-mengano**.
-  -  Pulse en el botón **New pull request**, y siga las instrucciones de GitHub.
+| Segment de veu | Referència (s) | Detector (s) |
+|---|---|---|
+| 1 | 1,410–2,850 | 1,410–2,860 |
+| 2 | 3,340–4,700 | 3,400–4,690 |
+| 3 | 5,620–8,150 | 5,610–8,240 |
 
+El detector perd 60 ms a l'inici poc potent del segon fragment. Allarga 90 ms el final del tercer, on la veu es confon amb el soroll. La resta de diferències són de 10 ms.
 
-Entrega de la práctica.
------------------------
+En aquesta gravació obtinc **98,69 % de sensibilitat de veu**, **97,95 % de precisió de veu** i **98,335 % de puntuació**. Resultat complet: [evaluacio_personal.txt](resultats/evaluacio_personal.txt).
 
-Responda, en este mismo documento (README.md), los ejercicios indicados a continuación. Este documento es
-un fichero de texto escrito con un formato denominado _**markdown**_. La principal característica de este
-formato es que, manteniendo la legibilidad cuando se visualiza con herramientas en modo texto (`more`,
-`less`, editores varios, ...), permite amplias posibilidades de visualización con formato en una amplia
-gama de aplicaciones; muy notablemente, **GitHub**, **Doxygen** y **Facebook** (ciertamente, :eyes:).
+```sh
+perl scripts/vad_evaluation.pl pav_41XX1.lab
+```
 
-En GitHub. cuando existe un fichero denominado README.md en el directorio raíz de un repositorio, se
-interpreta y muestra al entrar en el repositorio.
+## Ajust i avaluació de `db.v4`
 
-Debe redactar las respuestas a los ejercicios usando Markdown. Puede encontrar información acerca de su
-sintáxis en la página web [Sintaxis de Markdown](https://daringfireball.net/projects/markdown/syntax).
-También puede consultar el documento adjunto [MARKDOWN.md](MARKDOWN.md), en el que se enumeran los
-elementos más relevantes para completar la redacción de esta práctica.
+He comparat **27 combinacions** canviant les constants de `src/vad.c`. Mantinc el mateix algoritme en tots els casos. No he fet servir la gravació personal per triar els paràmetres.
 
-Recuerde realizar el *pull request* una vez completada la práctica.
+| Prova | Inicialització | Veu mínima | Silenci mínim | Marge | Actualització del soroll | TOTAL |
+|---|---:|---:|---:|---:|---:|---:|
+| Inicial | 200 ms | 50 ms | 150 ms | 8 dB | 0,02 | 95,038 % |
+| Marge més baix | 200 ms | 50 ms | 150 ms | 6 dB | 0,02 | 95,174 % |
+| Veu mínima més llarga | 200 ms | 80 ms | 150 ms | 6 dB | 0,02 | 95,250 % |
+| **Final** | **100 ms** | **80 ms** | **150 ms** | **6 dB** | **0,02** | **95,474 %** |
 
-Ejercicios
-----------
+Totes les proves: [ajust_parametres.csv](resultats/ajust_parametres.csv).
 
-### Etiquetado manual de los segmentos de voz y silencio
+Executo:
 
-- Grabe una señal de voz en la que haya distintos segmentos de voz y silencio. La señal debe ser de un
-  solo canal (monofónica), grabada con una frecuencia de muestreo de 16 kHz y codificada con PCM lineal
-  de 16 bits.
+```sh
+scripts/run_vad.sh
+```
 
-  Nombre a la señal como `pav_GGP#.wav`, donde GG es el grupo de clase (por ejemplo, 21 o 41), P es el
-  número del puesto de trabajo y # es el número de señal (si sólo se entrega una señal, este número es
-  1).
+El script analitza les 115 gravacions i guarda les prediccions a `resultats/db`. Copio les referències sense modificar-les i les comparo amb el script proporcionat `vad_evaluation.pl`.
 
-  > NOTA: es habitual que las grabaciones empiecen con un segmento de silencio de potencia extremadamente
-  > bajo; mucho más bajo que el nivel de ruido normal durante el resto de la señal. Si esto ocurre, la
-  > detección usando como nivel de referencia para el silencio el segmento inicial se ve seriamente
-  > dificultada. Puede detectar esta situación visualizando el nivel de potencia estimado por el propio
-  > `wavesurfer` y corregirla usando la herramienta de corte (:scissors:).
+| Estat | Sensibilitat (*recall*) | Precisió |
+|---|---:|---:|
+| Veu | **97,86 %** | **92,18 %** |
+| Silenci | **87,05 %** | **96,30 %** |
 
-- Etiquete manualmente los segmentos de voz y silencio del fichero grabado al efecto. Inserte, a
-  continuación, una captura de `wavesurfer` en la que se vea con claridad la señal temporal, el contorno de
-  potencia y la tasa de cruces por cero, junto con el etiquetado manual de los segmentos.
+**TOTAL: 95,474 %.** El script calcula `sqrt(F2(veu) * F0.5(silenci))`, no una F1 simple.
 
-- A la vista de la gráfica, indique qué valores considera adecuados para las magnitudes siguientes:
+L'avaluador afegeix silenci al final de tres referències més curtes que l'àudio. He mantingut les etiquetes originals. [Resultat complet](resultats/evaluacio_db.txt).
 
-  * Incremento del nivel potencia en dB, respecto al nivel correspondiente al silencio inicial, para
-    estar seguros de que un segmento de señal se corresponde con voz.
+Els paràmetres s'han triat sobre `db.v4`; aquesta puntuació és de desenvolupament. El detector pot fallar si la veu comença durant la inicialització o si el soroll canvia bruscament.
 
-  * Duración mínima razonable de los segmentos de voz y silencio.
+## Comprovacions
 
-  * ¿Es capaz de sacar alguna conclusión a partir de la evolución de la tasa de cruces por cero?
+- Compilació sense avisos i recompilació de les dependències amb Ninja.
+- Sortides amb només `S` i `V`, contínues i amb la durada real dels 115 àudios.
+- Clics curts, pauses dins de la veu, decisions pendents al final i blocs incomplets.
+- Àudios curts, silenci absolut, 8/16/48 kHz i errors d'entrada o sortida.
 
+[Registre de proves](resultats/proves.txt).
 
-### Desarrollo del detector de actividad vocal
+## Extres
 
-- Complete el código de los ficheros de la práctica para implementar un detector de actividad vocal en
-  tiempo real tan exacto como sea posible. Tome como objetivo la maximización de la puntuación-F `TOTAL`.
+No implementats: cancel·lació del silenci i paràmetres del detector configurables des de la línia d'ordres. Mantinc el lector bàsic d'arguments `docopt_c` que ja venia amb la pràctica.
 
-- Inserte una gráfica en la que se vea con claridad la señal temporal, el etiquetado manual y la detección
-  automática conseguida para el fichero grabado al efecto. 
+## Figures
 
-- Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
+Per regenerar les figures en aquest Mac, amb l'entorn Python de P1:
 
-- Evalúe los resultados sobre la base de datos `db.v4` con el script `vad_evaluation.pl` e inserte a 
-  continuación las tasas de sensibilidad (*recall*) y precisión para el conjunto de la base de datos (sólo
-  el resumen).
+```sh
+../P1/.venv/bin/python scripts/grafiques.py
+../P1/.venv/bin/python scripts/visualitza_wavesurfer.py --export
+```
 
+Sense `--export`, el segon script obre els panells interactius de WaveSurfer. Els scripts de figures necessiten NumPy, Matplotlib i SoundFile.
 
-### Trabajos de ampliación
+## Entrega
 
-#### Cancelación del ruido en los segmentos de silencio
+Branca local: `jordi-albareda`. El repositori remot configurat és `victor836768/P2`.
 
-- Si ha desarrollado el algoritmo para la cancelación de los segmentos de silencio, inserte una gráfica en
-  la que se vea con claridad la señal antes y después de la cancelación (puede que `wavesurfer` no sea la
-  mejor opción para esto, ya que no es capaz de visualizar varias señales al mismo tiempo).
+Per entregar, cal pujar la branca, fer el pull request indicat al repositori de la pràctica i pujar `pav_41XX1.wav` i `pav_41XX1.lab` a Atenea.
 
-#### Gestión de las opciones del programa usando `docopt_c`
+## Referències
 
-- Si ha usado `docopt_c` para realizar la gestión de las opciones y argumentos del programa `vad`, inserte
-  una captura de pantalla en la que se vea el mensaje de ayuda del programa.
-
-
-### Contribuciones adicionales y/o comentarios acerca de la práctica
-
-- Indique a continuación si ha realizado algún tipo de aportación suplementaria (algoritmos de detección o 
-  parámetros alternativos, etc.).
-
-- Si lo desea, puede realizar también algún comentario acerca de la realización de la práctica que
-  considere de interés de cara a su evaluación.
-
-
-### Antes de entregar la práctica
-
-Recuerde comprobar que el repositorio cuenta con los códigos correctos y en condiciones de ser 
-correctamente compilados con la orden `meson bin; ninja -C bin`. El programa generado (`bin/vad`) será
-el usado, sin más opciones, para realizar la evaluación *ciega* del sistema.
+- [Enunciat de P2](p2_vad.pdf).
+- Codi inicial i avaluador proporcionats al repositori de la pràctica.
+- Funcions d'anàlisi i gravació reutilitzades de P1.

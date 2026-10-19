@@ -83,6 +83,8 @@ Tokens* tokens_move(Tokens *ts) {
  */
 
 int parse_doubledash(Tokens *ts, Elements *elements) {
+    (void) ts;  // Indico que aquesta funció del codi base no fa servir el primer argument.
+    (void) elements;  // Evito l'avís del segon argument no utilitzat.
     //int n_commands = elements->n_commands;
     //int n_arguments = elements->n_arguments;
     //Command *commands = elements->commands;

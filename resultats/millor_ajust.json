@@ -1,0 +1,12 @@
+{
+  "init_frames": 10,
+  "min_voice": 8,
+  "min_silence": 15,
+  "margin_db": 6,
+  "noise_alpha": 0.02,
+  "recall_v": 97.86,
+  "precision_v": 92.18,
+  "recall_s": 87.05,
+  "precision_s": 96.3,
+  "total": 95.474
+}

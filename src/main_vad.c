@@ -1,113 +1,97 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <errno.h>
-#include <sndfile.h>
-
+#include <string.h>
+#include <sndfile.h>  // Llegeixo les mostres amb libsndfile.
 #include "vad.h"
-#include "vad_docopt.h"
-
-#define DEBUG_VAD 0x1
+#include "vad_docopt.h"  // Aprofito el lector d'arguments que ja venia amb la pràctica.
 
 int main(int argc, char *argv[]) {
-  int verbose = 0; /* To show internal state of vad: verbose = DEBUG_VAD; */
-
-  SNDFILE *sndfile_in, *sndfile_out = 0;
-  SF_INFO sf_info;
-  FILE *vadfile;
-  int n_read = 0, i;
-
-  VAD_DATA *vad_data;
-  VAD_STATE state, last_state;
-
-  float *buffer, *buffer_zeros;
-  int frame_size;         /* in samples */
-  float frame_duration;   /* in seconds */
-  unsigned int t, last_t; /* in frames */
-
-  char	*input_wav, *output_vad, *output_wav;
-
-  DocoptArgs args = docopt(argc, argv, /* help */ 1, /* version */ "2.0");
-
-  verbose    = args.verbose ? DEBUG_VAD : 0;
-  input_wav  = args.input_wav;
-  output_vad = args.output_vad;
-  output_wav = args.output_wav;
-
-  if (input_wav == 0 || output_vad == 0) {
-    fprintf(stderr, "%s\n", args.usage_pattern);
-    return -1;
-  }
-
-  /* Open input sound file */
-  if ((sndfile_in = sf_open(input_wav, SFM_READ, &sf_info)) == 0) {
-    fprintf(stderr, "Error opening input file %s (%s)\n", input_wav, strerror(errno));
-    return -1;
-  }
-
-  if (sf_info.channels != 1) {
-    fprintf(stderr, "Error: the input file has to be mono: %s\n", input_wav);
-    return -2;
-  }
-
-  /* Open vad file */
-  if ((vadfile = fopen(output_vad, "wt")) == 0) {
-    fprintf(stderr, "Error opening output vad file %s (%s)\n", output_vad, strerror(errno));
-    return -1;
-  }
-
-  /* Open output sound file, with same format, channels, etc. than input */
-  if (output_wav) {
-    if ((sndfile_out = sf_open(output_wav, SFM_WRITE, &sf_info)) == 0) {
-      fprintf(stderr, "Error opening output wav file %s (%s)\n", output_wav, strerror(errno));
-      return -1;
+    DocoptArgs args = docopt(argc, argv, 1, "2.0");  // Llegeixo els noms dels fitxers i l'opció verbose.
+    if (args.input_wav == NULL || args.output_vad == NULL) {  // Comprovo els dos arguments obligatoris.
+        fprintf(stderr, "%s\n", args.usage_pattern);  // Mostro la forma d'executar el programa.
+        return 1;  // Indico que falten arguments.
     }
-  }
-
-  vad_data = vad_open(sf_info.samplerate);
-  /* Allocate memory for buffers */
-  frame_size   = vad_frame_size(vad_data);
-  buffer       = (float *) malloc(frame_size * sizeof(float));
-  buffer_zeros = (float *) malloc(frame_size * sizeof(float));
-  for (i=0; i< frame_size; ++i) buffer_zeros[i] = 0.0F;
-
-  frame_duration = (float) frame_size/ (float) sf_info.samplerate;
-  last_state = ST_UNDEF;
-
-  for (t = last_t = 0; ; t++) { /* For each frame ... */
-    /* End loop when file has finished (or there is an error) */
-    if  ((n_read = sf_read_float(sndfile_in, buffer, frame_size)) != frame_size) break;
-
-    if (sndfile_out != 0) {
-      /* TODO: copy all the samples into sndfile_out */
+    if (strcmp(args.input_wav, args.output_vad) == 0) {  // Evito escriure sobre l'entrada amb el mateix nom.
+        fprintf(stderr, "L'entrada i la sortida han de tenir noms diferents.\n");  // Explico l'error.
+        return 1;  // Aturo el programa abans d'obrir la sortida.
     }
 
-    state = vad(vad_data, buffer);
-    if (verbose & DEBUG_VAD) vad_show_state(vad_data, stdout);
-
-    /* TODO: print only SILENCE and VOICE labels */
-    /* As it is, it prints UNDEF segments but is should be merge to the proper value */
-    if (state != last_state) {
-      if (t != last_t)
-        fprintf(vadfile, "%.5f\t%.5f\t%s\n", last_t * frame_duration, t * frame_duration, state2str(last_state));
-      last_state = state;
-      last_t = t;
+    SF_INFO info = {0};  // Inicialitzo les dades que omplirà libsndfile.
+    SNDFILE *audio = sf_open(args.input_wav, SFM_READ, &info);  // Obro l'àudio per llegir-lo.
+    if (audio == NULL) {  // Comprovo que el fitxer es pugui llegir.
+        fprintf(stderr, "No puc obrir l'àudio: %s\n", sf_strerror(NULL));  // Mostro el motiu de l'error.
+        return 1;  // Indico que l'entrada no és vàlida.
+    }
+    if (info.channels != 1 || info.frames == 0) {  // Necessito àudio mono amb alguna mostra.
+        fprintf(stderr, "Cal un àudio mono que no sigui buit.\n");  // Indico el format necessari.
+        sf_close(audio);  // Tanco l'entrada abans de sortir.
+        return 1;  // Retorno un error.
     }
 
-    if (sndfile_out != 0) {
-      /* TODO: go back and write zeros in silence segments */
+    VAD_DATA *data = vad_open(info.samplerate);  // Preparo el detector amb la freqüència real.
+    if (data == NULL) {  // Comprovo que he pogut inicialitzar-lo.
+        fprintf(stderr, "No puc inicialitzar el detector.\n");  // Mostro l'error.
+        sf_close(audio);  // Tanco l'entrada.
+        return 1;  // Aturo l'execució.
     }
-  }
+    unsigned int frame_size = vad_frame_size(data);  // Consulto quantes mostres necessita cada bloc.
+    float *buffer = malloc(frame_size * sizeof(float));  // Reservo només la memòria d'un bloc.
+    if (buffer == NULL) {  // Comprovo la reserva.
+        fprintf(stderr, "No hi ha prou memòria.\n");  // Mostro l'error.
+        vad_close(data);  // Allibero el detector.
+        sf_close(audio);  // Tanco l'entrada.
+        return 1;  // Retorno un error.
+    }
+    FILE *labels = fopen(args.output_vad, "w");  // Obro el fitxer d'etiquetes.
+    if (labels == NULL) {  // Comprovo que pugui escriure la sortida.
+        perror("No puc obrir el fitxer d'etiquetes");  // Mostro el motiu de l'error.
+        free(buffer);  // Allibero el bloc de mostres.
+        vad_close(data);  // Allibero el detector.
+        sf_close(audio);  // Tanco l'entrada.
+        return 1;  // Retorno un error.
+    }
 
-  state = vad_close(vad_data);
-  /* TODO: what do you want to print, for last frames? */
-  if (t != last_t)
-    fprintf(vadfile, "%.5f\t%.5f\t%s\n", last_t * frame_duration, t * frame_duration + n_read / (float) sf_info.samplerate, state2str(state));
+    double frame_time = (double) frame_size / info.samplerate;  // Calculo la durada exacta d'un bloc.
+    unsigned int t = 0, last_t = 0, pending = 0;  // Compto blocs, inici del segment i blocs pendents.
+    VAD_STATE last_state = ST_UNDEF;  // Encara no tinc cap segment confirmat.
+    sf_count_t n_read;  // Guardo les mostres que llegeixo a cada pas.
 
-  /* clean up: free memory, close open files */
-  free(buffer);
-  free(buffer_zeros);
-  sf_close(sndfile_in);
-  fclose(vadfile);
-  if (sndfile_out) sf_close(sndfile_out);
-  return 0;
+    while ((n_read = sf_read_float(audio, buffer, frame_size)) == frame_size) {  // Llegeixo un bloc cada vegada.
+        VAD_STATE state = vad(data, buffer);  // Demano una decisió al detector.
+        if (args.verbose) {  // Mostro el seguiment només si l'he demanat.
+            printf("%.5f\t", t * frame_time);  // Escric el temps del bloc.
+            vad_show_state(data, stdout);  // Escric estat, potència i llindar.
+        }
+        if (state == ST_UNDEF) {  // Espero una decisió quan l'estat és provisional.
+            pending++;  // Recordo quants blocs hauré d'assignar després.
+        } else {
+            unsigned int start = t - pending;  // Retrocedeixo fins al primer bloc pendent.
+            if (last_state == ST_UNDEF) {  // Resolc el primer segment del fitxer.
+                last_state = state;  // Guardo la primera etiqueta S o V.
+            } else if (state != last_state) {  // Tanco el segment quan es confirma un canvi.
+                if (start > last_t) {  // Evito escriure segments de durada zero.
+                    fprintf(labels, "%.6f\t%.6f\t%s\n", last_t * frame_time, start * frame_time, state2str(last_state));  // Escric el segment anterior.
+                }
+                last_t = start;  // Guardo l'inici real del segment nou.
+                last_state = state;  // Guardo la nova etiqueta confirmada.
+            }
+            pending = 0;  // Ja he resolt els blocs que tenia pendents.
+        }
+        t++;  // Avanço al bloc següent.
+    }
+
+    int result = 0;  // Començo suposant que la lectura ha acabat correctament.
+    if (sf_error(audio) != SF_ERR_NO_ERROR) result = 1;  // Comprovo si la lectura ha fallat.
+    VAD_STATE final_state = vad_close(data);  // Resolc els possibles blocs pendents al final.
+    if (last_state == ST_UNDEF) last_state = final_state;  // Etiqueto també els àudios més curts que la inicialització.
+    double end = ((double) t * frame_size + n_read) / info.samplerate;  // Incloc les mostres del darrer bloc incomplet.
+    if (end > last_t * frame_time) {  // Escric l'últim segment fins al final real de l'àudio.
+        fprintf(labels, "%.6f\t%.6f\t%s\n", last_t * frame_time, end, state2str(last_state));  // Mantinc l'última decisió confirmada.
+    }
+    if (ferror(labels)) result = 1;  // Comprovo els errors d'escriptura.
+    if (fclose(labels) != 0) result = 1;  // Detecto també els errors en tancar la sortida.
+    free(buffer);  // Allibero la memòria del bloc.
+    sf_close(audio);  // Tanco l'entrada.
+    if (result != 0) fprintf(stderr, "Error en llegir o escriure les dades.\n");  // Aviso si alguna operació ha fallat.
+    return result;  // Retorno l'estat de l'execució.
 }

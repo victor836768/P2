@@ -1,0 +1,14 @@
+OK: 8000 Hz; clic curt rebutjat, pausa breu dins de V, canvi retroactiu i final incomplet
+OK: 16000 Hz; clic curt rebutjat, pausa breu dins de V, canvi retroactiu i final incomplet
+OK: 48000 Hz; clic curt rebutjat, pausa breu dins de V, canvi retroactiu i final incomplet
+OK: silenci absolut i àudios més curts que un bloc o que la inicialització
+OK: pausa final no confirmada mantinguda dins de V
+OK: errors d’arguments, estèreo, fitxer buit, entrada/sortida invàlida i opció extra no disponible
+OK: ajuda coherent amb la versió bàsica
+OK: 115 sortides amb només S/V, sense buits ni solapaments i amb la durada real
+OK: compilació des de zero amb meson bin; ninja -C bin, sense avisos
+OK: el programa d’una còpia neta reprodueix el resultat personal
+OK: Ninja no reconstrueix res si no hi ha canvis
+OK: canvi a vad.c -> src_vad.c.o i enllaç
+OK: canvi a vad.h -> src_vad.c.o, src_main_vad.c.o i enllaç
+OK: canvi a pav_analysis.h -> src_vad.c.o, src_pav_analysis.c.o i enllaç

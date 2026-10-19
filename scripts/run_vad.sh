@@ -1,35 +1,36 @@
 #!/bin/bash
-
-# Be sure that this file has execution permissions:
-# Use the nautilus explorer or chmod +x run_vad.sh
-
-# Establecemos que el código de retorno de un pipeline sea el del último programa con código de retorno
-# distinto de cero, o cero si todos devuelven cero.
+# Aturo el procés si falla el detector o l'avaluació.
+set -e
 set -o pipefail
 
-# Write here the name and path of your program and database
-DIR_P2=$HOME/PAV/P2
-DB=$DIR_P2/db.v4
-CMD=$DIR_P2/bin/vad
+# Localitzo P2 a partir del directori d'aquest script.
+DIR_P2="$(cd "$(dirname "$0")/.." && pwd)"
+DB="$DIR_P2/db.v4"
+CMD="$DIR_P2/bin/vad"
+OUT="$DIR_P2/resultats/db" # Separo les prediccions de la base de dades original.
 
-for filewav in $DB/*/*wav; do
-#    echo
-    echo "**************** $filewav ****************"
-    if [[ ! -f $filewav ]]; then 
-	    echo "Wav file not found: $filewav" >&2
-	    exit 1
+# Comprovo que he compilat el programa abans d'avaluar-lo.
+if [[ ! -x "$CMD" ]]; then
+    echo "Primer executa: meson setup bin; ninja -C bin" >&2
+    exit 1
+fi
+
+# Creo la carpeta on guardaré l'avaluació.
+mkdir -p "$DIR_P2/resultats"
+
+# Genero un .vad per a cada gravació de la base de dades.
+for filewav in "$DB"/*/*.wav; do
+    if [[ ! -f "$filewav" ]]; then
+        echo "No he trobat la base de dades a $DB" >&2
+        exit 1
     fi
-
-    filevad=${filewav/.wav/.vad}
-
-    $CMD -i $filewav -o $filevad || exit 1
-
-# Alternatively, uncomment to create output wave files
-#    filewavOut=${filewav/.wav/.vad.wav}
-#    $CMD $filewav $filevad $filewavOut || exit 1
-
+    group="$(basename "$(dirname "$filewav")")" # Conservo el nom del grup de gravacions.
+    name="$(basename "${filewav%.wav}")" # Obtinc el nom sense extensió.
+    mkdir -p "$OUT/$group" # Creo el directori dels resultats d'aquest grup.
+    cp "${filewav%.wav}.lab" "$OUT/$group/$name.lab" # Copio la referència sense modificar-la.
+    filevad="$OUT/$group/$name.vad" # Indico on guardaré la predicció.
+    "$CMD" -i "$filewav" -o "$filevad"
 done
 
-scripts/vad_evaluation.pl $DB/*/*lab
-
-exit 0
+# Comparo amb les etiquetes originals i deso el resultat complet.
+perl "$DIR_P2/scripts/vad_evaluation.pl" "$OUT"/*/*.lab | tee "$DIR_P2/resultats/evaluacio_db.txt"

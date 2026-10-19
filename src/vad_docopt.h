@@ -18,7 +18,6 @@ typedef struct {
     /* options with arguments */
     char *input_wav;
     char *output_vad;
-    char *output_wav;
     /* special */
     const char *usage_pattern;
     const char *help_message;
@@ -28,14 +27,13 @@ const char help_message[] =
 "VAD - Voice Activity Detector\n"
 "\n"
 "Usage:\n"
-"   vad [options] -i <input-wav> -o <output-vad> [-w <output-wav>]\n"
+"   vad [options] -i <input-wav> -o <output-vad>\n"
 "   vad (-h | --help)\n"
 "   vad --version\n"
 "\n"
 "Options:\n"
 "   -i FILE, --input-wav=FILE   WAVE file for voice activity detection\n"
 "   -o FILE, --output-vad=FILE  Label file with the result of VAD\n"
-"   -w FILE, --output-wav=FILE  WAVE file with silences cleared\n"
 "   -v, --verbose  Show debug information\n"
 "   -h, --help     Show this screen\n"
 "   --version      Show the version of the project\n"
@@ -43,7 +41,7 @@ const char help_message[] =
 
 const char usage_pattern[] =
 "Usage:\n"
-"   vad [options] -i <input-wav> -o <output-vad> [-w <output-wav>]\n"
+"   vad [options] -i <input-wav> -o <output-vad>\n"
 "   vad (-h | --help)\n"
 "   vad --version";
 
@@ -108,6 +106,8 @@ Tokens* tokens_move(Tokens *ts) {
  */
 
 int parse_doubledash(Tokens *ts, Elements *elements) {
+    (void) ts;  // Indico que aquesta funció del codi base no fa servir el primer argument.
+    (void) elements;  // Evito l'avís del segon argument no utilitzat.
     //int n_commands = elements->n_commands;
     //int n_arguments = elements->n_arguments;
     //Command *commands = elements->commands;
@@ -276,9 +276,6 @@ int elems_to_args(Elements *elements, DocoptArgs *args, bool help,
         } else if (!strcmp(option->olong, "--output-vad")) {
             if (option->argument)
                 args->output_vad = option->argument;
-        } else if (!strcmp(option->olong, "--output-wav")) {
-            if (option->argument)
-                args->output_wav = option->argument;
         }
     }
     /* commands */
@@ -299,7 +296,7 @@ int elems_to_args(Elements *elements, DocoptArgs *args, bool help,
 
 DocoptArgs docopt(int argc, char *argv[], bool help, const char *version) {
     DocoptArgs args = {
-        0, 0, 0, NULL, NULL, NULL,
+        0, 0, 0, NULL, NULL,
         usage_pattern, help_message
     };
     Tokens ts;
@@ -312,10 +309,9 @@ DocoptArgs docopt(int argc, char *argv[], bool help, const char *version) {
         {"-v", "--verbose", 0, 0, NULL},
         {NULL, "--version", 0, 0, NULL},
         {"-i", "--input-wav", 1, 0, NULL},
-        {"-o", "--output-vad", 1, 0, NULL},
-        {"-w", "--output-wav", 1, 0, NULL}
+        {"-o", "--output-vad", 1, 0, NULL}
     };
-    Elements elements = {0, 0, 6, commands, arguments, options};
+    Elements elements = {0, 0, 5, commands, arguments, options};
 
     ts = tokens_new(argc, argv);
     if (parse_args(&ts, &elements))
