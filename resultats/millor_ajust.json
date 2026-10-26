@@ -2,11 +2,12 @@
   "init_frames": 10,
   "min_voice": 8,
   "min_silence": 15,
-  "margin_db": 6,
   "noise_alpha": 0.02,
-  "recall_v": 97.86,
-  "precision_v": 92.18,
-  "recall_s": 87.05,
-  "precision_s": 96.3,
-  "total": 95.474
+  "recall_v": 98.33,
+  "precision_v": 90.59,
+  "recall_s": 84.07,
+  "precision_s": 96.99,
+  "total": 95.376,
+  "voice_margin_db": 6,
+  "silence_margin_db": 5
 }

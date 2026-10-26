@@ -1,5 +1,5 @@
 **************** pav_41XX1.lab ****************
-Recall V:  5.26/5.33   98.69%   Precision V:  5.26/5.37   97.95%   F-score V (2)  : 98.54%
-Recall S:  4.10/4.21   97.38%   Precision S:  4.10/4.17   98.32%   F-score S (1/2): 98.13%
-===> pav_41XX1.lab: 98.335%
+Recall V:  5.27/5.33   98.87%   Precision V:  5.27/5.40   97.59%   F-score V (2)  : 98.62%
+Recall S:  4.08/4.21   96.91%   Precision S:  4.08/4.14   98.55%   F-score S (1/2): 98.22%
+===> pav_41XX1.lab: 98.416%
 

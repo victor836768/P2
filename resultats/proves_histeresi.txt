@@ -1,0 +1,4 @@
+OK: 8000 Hz; el nivell entre llindars no inicia veu, però la manté si ja era V; clic curt rebutjat
+OK: 16000 Hz; el nivell entre llindars no inicia veu, però la manté si ja era V; clic curt rebutjat
+OK: 48000 Hz; el nivell entre llindars no inicia veu, però la manté si ja era V; clic curt rebutjat
+OK: 115 fitxers amb només S/V, segments continus i durada correcta

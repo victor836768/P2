@@ -2,6 +2,23 @@
 
 Jordi Albareda Fortuny · Grup 41 · Lloc XX
 
+## Prova d’histèresi
+
+Branca `jordi-albareda-canvis-classe-histeresi`, creada des de `jordi-albareda` (commit `2de00cb`).
+
+Comparo dos llindars mantenint la inicialització, les duracions mínimes i l’actualització del soroll. He provat 14 combinacions sobre les mateixes 115 gravacions.
+
+| Configuració | Entrada en veu | Sortida de veu | Sensibilitat V | Precisió V | TOTAL |
+|---|---:|---:|---:|---:|---:|
+| Base | soroll + 6 dB | soroll + 6 dB | 97,86 % | 92,18 % | **95,474 %** |
+| Millor amb histèresi | soroll + 6 dB | soroll + 5 dB | **98,33 %** | 90,59 % | 95,376 % |
+| Prova 6/4 | soroll + 6 dB | soroll + 4 dB | 98,60 % | 88,05 % | 94,651 % |
+| Prova 6/3 | soroll + 6 dB | soroll + 3 dB | 98,88 % | 85,08 % | 93,587 % |
+
+Conservo més veu, però també classifico més soroll com a veu. Cap combinació provada supera el TOTAL de la base; no faig la fusió. Deixo 6/5 dB en aquesta branca per poder revisar la millor prova.
+
+[Resultats de les 14 configuracions](resultats/comparacio_histeresi.csv).
+
 ## Compilació i execució
 
 Necessito Meson, Ninja i `libsndfile`.
@@ -12,7 +29,7 @@ ninja -C bin
 bin/vad -i pav_41XX1.wav -o pav_41XX1.vad
 ```
 
-`meson bin` és la forma antiga de `meson setup bin`. Amb `-v` mostro temps, estat intern, potència i llindar. Les etiquetes del fitxer de sortida són només `S` i `V`.
+`meson bin` és la forma antiga de `meson setup bin`. Amb `-v` mostro temps, estat intern, potència, llindar d’entrada i llindar de sortida. Les etiquetes del fitxer de sortida són només `S` i `V`.
 
 ## Etiquetatge de veu i silenci
 
@@ -40,7 +57,7 @@ De dalt a baix: forma d'ona, potència, ZCR, referència visual en negre i detec
 
 El silenci inicial complet té una potència mitjana de **−52,40 dB**. Els primers 100 ms, que faig servir per inicialitzar el detector, donen **−53,60 dB**.
 
-Trio un marge de **6 dB** sobre el soroll: el llindar inicial és aproximadament **−47,60 dB**. Durant el silenci actualitzo la referència amb `soroll = 0.98 * soroll + 0.02 * potència`.
+Faig servir **soroll + 6 dB** per passar de silenci a veu i **soroll + 5 dB** per passar de veu a silenci. Els llindars inicials són **−47,60 dB** i **−48,60 dB**. Durant el silenci actualitzo la referència amb `soroll = 0.98 * soroll + 0.02 * potència`.
 
 ### Duracions mínimes
 
@@ -58,10 +75,10 @@ El ZCR mitjà del silenci inicial és **346 Hz** i el màxim de la gravació és
 Reutilitzo `compute_power()` de P1. Processo blocs de 10 ms amb cinc estats:
 
 1. **INIT:** estimo el soroll amb la mitjana de potències lineals dels primers 100 ms.
-2. **SILENCE:** espero que la potència superi el llindar.
-3. **MAYBE_VOICE:** confirmo la veu després de 80 ms seguits per sobre del llindar.
-4. **VOICE:** espero una baixada de potència.
-5. **MAYBE_SILENCE:** confirmo el silenci després de 150 ms seguits per sota del llindar.
+2. **SILENCE:** espero que la potència superi el llindar alt.
+3. **MAYBE_VOICE:** confirmo la veu després de 80 ms seguits per sobre del llindar alt.
+4. **VOICE:** espero que la potència baixi del llindar baix.
+5. **MAYBE_SILENCE:** confirmo el silenci després de 150 ms seguits per sota del llindar baix.
 
 Si una candidatura és massa curta, mantinc l'estat anterior. Quan confirmo un canvi, situo el límit al primer bloc provisional. Al final del fitxer resolc els blocs pendents amb l'última decisió confirmada i incloc les mostres del darrer bloc incomplet.
 
@@ -74,12 +91,12 @@ Només guardo les mostres d'un bloc i els comptadors de l'autòmat. No llegeixo 
 | Segment de veu | Referència (s) | Detector (s) |
 |---|---|---|
 | 1 | 1,410–2,850 | 1,410–2,860 |
-| 2 | 3,340–4,700 | 3,400–4,690 |
+| 2 | 3,340–4,700 | 3,400–4,720 |
 | 3 | 5,620–8,150 | 5,610–8,240 |
 
-El detector perd 60 ms a l'inici poc potent del segon fragment. Allarga 90 ms el final del tercer, on la veu es confon amb el soroll. La resta de diferències són de 10 ms.
+El detector perd 60 ms a l'inici poc potent del segon fragment i n'allarga el final 20 ms. Allarga 90 ms el final del tercer, on la veu es confon amb el soroll. La resta de diferències són de 10 ms.
 
-En aquesta gravació obtinc **98,69 % de sensibilitat de veu**, **97,95 % de precisió de veu** i **98,335 % de puntuació**. Resultat complet: [evaluacio_personal.txt](resultats/evaluacio_personal.txt).
+En aquesta gravació obtinc **98,87 % de sensibilitat de veu**, **97,59 % de precisió de veu** i **98,416 % de puntuació**. Resultat complet: [evaluacio_personal.txt](resultats/evaluacio_personal.txt).
 
 ```sh
 perl scripts/vad_evaluation.pl pav_41XX1.lab
@@ -87,14 +104,14 @@ perl scripts/vad_evaluation.pl pav_41XX1.lab
 
 ## Ajust i avaluació de `db.v4`
 
-He comparat **27 combinacions** canviant les constants de `src/vad.c`. Mantinc el mateix algoritme en tots els casos. No he fet servir la gravació personal per triar els paràmetres.
+Per a la versió base sense histèresi vaig comparar **27 combinacions** canviant les constants de `src/vad.c`. Mantinc el mateix algoritme en tots els casos. No he fet servir la gravació personal per triar els paràmetres.
 
 | Prova | Inicialització | Veu mínima | Silenci mínim | Marge | Actualització del soroll | TOTAL |
 |---|---:|---:|---:|---:|---:|---:|
 | Inicial | 200 ms | 50 ms | 150 ms | 8 dB | 0,02 | 95,038 % |
 | Marge més baix | 200 ms | 50 ms | 150 ms | 6 dB | 0,02 | 95,174 % |
 | Veu mínima més llarga | 200 ms | 80 ms | 150 ms | 6 dB | 0,02 | 95,250 % |
-| **Final** | **100 ms** | **80 ms** | **150 ms** | **6 dB** | **0,02** | **95,474 %** |
+| **Base sense histèresi** | **100 ms** | **80 ms** | **150 ms** | **6 dB** | **0,02** | **95,474 %** |
 
 Totes les proves: [ajust_parametres.csv](resultats/ajust_parametres.csv).
 
@@ -108,10 +125,10 @@ El script analitza les 115 gravacions i guarda les prediccions a `resultats/db`.
 
 | Estat | Sensibilitat (*recall*) | Precisió |
 |---|---:|---:|
-| Veu | **97,86 %** | **92,18 %** |
-| Silenci | **87,05 %** | **96,30 %** |
+| Veu | **98,33 %** | **90,59 %** |
+| Silenci | **84,07 %** | **96,99 %** |
 
-**TOTAL: 95,474 %.** El script calcula `sqrt(F2(veu) * F0.5(silenci))`, no una F1 simple.
+**TOTAL de la branca amb histèresi: 95,376 %.** El script calcula `sqrt(F2(veu) * F0.5(silenci))`, no una F1 simple.
 
 L'avaluador afegeix silenci al final de tres referències més curtes que l'àudio. He mantingut les etiquetes originals. [Resultat complet](resultats/evaluacio_db.txt).
 
@@ -125,6 +142,8 @@ Els paràmetres s'han triat sobre `db.v4`; aquesta puntuació és de desenvolupa
 - Àudios curts, silenci absolut, 8/16/48 kHz i errors d'entrada o sortida.
 
 [Registre de proves](resultats/proves.txt).
+
+[Proves específiques d’histèresi](resultats/proves_histeresi.txt): a 8, 16 i 48 kHz, un nivell entre els dos llindars manté la veu ja iniciada però no inicia un segment nou.
 
 ## Extres
 
@@ -143,9 +162,9 @@ Sense `--export`, el segon script obre els panells interactius de WaveSurfer. El
 
 ## Entrega
 
-Branca local: `jordi-albareda`. El repositori remot configurat és `victor836768/P2`.
+Branca local de proves: `jordi-albareda-canvis-classe-histeresi`. La versió base es conserva a `jordi-albareda`. El repositori remot configurat és `victor836768/P2`.
 
-Per entregar, cal pujar la branca, fer el pull request indicat al repositori de la pràctica i pujar `pav_41XX1.wav` i `pav_41XX1.lab` a Atenea.
+Per a l’entrega mantinc la versió base de `jordi-albareda`, que obté millor TOTAL. Aquesta branca queda com a prova. El pull request d’entrega i la pujada de l’àudio i les etiquetes a Atenea queden pendents.
 
 ## Referències
 

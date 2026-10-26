@@ -6,7 +6,8 @@
 const int INIT_FRAMES = 10;  // Estimo el soroll amb els primers 100 ms.
 const int MIN_VOICE = 8;  // Exigeixo 80 ms seguits per confirmar la veu.
 const int MIN_SILENCE = 15;  // Exigeixo 150 ms seguits per confirmar el silenci.
-const float MARGIN_DB = 6.0f;  // Demano 6 dB més que el soroll per detectar veu.
+const float VOICE_MARGIN_DB = 6.0f;  // Demano 6 dB més que el soroll per començar a detectar veu.
+const float SILENCE_MARGIN_DB = 5.0f;  // Demano menys potència per mantenir la veu que per començar-la.
 const float NOISE_ALPHA = 0.02f;  // Actualitzo lentament la referència durant el silenci.
 
 const char *state2str(VAD_STATE state) {
@@ -47,10 +48,11 @@ VAD_STATE vad(VAD_DATA *data, float *x) {
         return ST_SILENCE;  // Resolc també els blocs inicials que havia deixat pendents.
     }
 
-    float threshold = data->noise + MARGIN_DB;  // Sitúo el llindar per sobre del soroll estimat.
+    float voice_threshold = data->noise + VOICE_MARGIN_DB;  // Calculo el llindar per passar de silenci a veu.
+    float silence_threshold = data->noise + SILENCE_MARGIN_DB;  // Calculo el llindar per passar de veu a silenci.
     switch (data->state) {
     case ST_SILENCE:
-        if (power > threshold) {  // Detecto un possible inici de veu.
+        if (power > voice_threshold) {  // Detecto un possible inici de veu.
             data->state = ST_MAYBE_VOICE;  // Espero abans de donar la veu per segura.
             data->count = 1;  // Compto el primer bloc candidat.
         } else {
@@ -58,7 +60,7 @@ VAD_STATE vad(VAD_DATA *data, float *x) {
         }
         break;
     case ST_MAYBE_VOICE:
-        if (power > threshold) {  // Comprovo si el nivell continua sent prou alt.
+        if (power > voice_threshold) {  // Comprovo si el nivell continua sent prou alt.
             data->count++;  // Afegeixo un altre bloc candidat.
             if (data->count >= MIN_VOICE) data->state = ST_VOICE;  // Confirmo la veu si dura prou.
         } else {
@@ -67,13 +69,13 @@ VAD_STATE vad(VAD_DATA *data, float *x) {
         }
         break;
     case ST_VOICE:
-        if (power <= threshold) {  // Detecto una possible pausa.
+        if (power <= silence_threshold) {  // Detecto una possible pausa amb el llindar més baix.
             data->state = ST_MAYBE_SILENCE;  // Espero abans de tallar el segment de veu.
             data->count = 1;  // Compto el primer bloc de nivell baix.
         }
         break;
     case ST_MAYBE_SILENCE:
-        if (power <= threshold) {  // Comprovo si la pausa continua.
+        if (power <= silence_threshold) {  // Comprovo si la pausa continua amb el mateix llindar baix.
             data->count++;  // Compto un altre bloc de nivell baix.
             if (data->count >= MIN_SILENCE) data->state = ST_SILENCE;  // Confirmo el silenci si dura prou.
         } else {
@@ -97,5 +99,5 @@ VAD_STATE vad_close(VAD_DATA *data) {
 }
 
 void vad_show_state(const VAD_DATA *data, FILE *out) {
-    fprintf(out, "%s\t%.3f\t%.3f\n", state2str(data->state), data->last_feature, data->noise + MARGIN_DB);  // Mostro estat, potència i llindar.
+    fprintf(out, "%s\t%.3f\t%.3f\t%.3f\n", state2str(data->state), data->last_feature, data->noise + VOICE_MARGIN_DB, data->noise + SILENCE_MARGIN_DB);  // Mostro estat, potència i els dos llindars.
 }

@@ -1,0 +1,22 @@
+{
+  "base_commit": "2de00cb03d791c04fd36200ec956ecbfade3ec60",
+  "baseline": {
+    "entrada_db": 6,
+    "sortida_db": 6,
+    "recall_v": 97.86,
+    "precision_v": 92.18,
+    "recall_s": 87.05,
+    "precision_s": 96.3,
+    "total": 95.474
+  },
+  "millor_histeresi": {
+    "entrada_db": 6,
+    "sortida_db": 5,
+    "recall_v": 98.33,
+    "precision_v": 90.59,
+    "recall_s": 84.07,
+    "precision_s": 96.99,
+    "total": 95.376
+  },
+  "configuracions": 14
+}
