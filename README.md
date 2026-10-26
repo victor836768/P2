@@ -8,34 +8,59 @@ Branca `jordi-albareda-canvis-classe-bash-script`, creada a partir de `jordi-alb
 
 ```sh
 ninja -C bin
-./cardem-li
+./cardem-li                    # De 4 a 10 dB, amb pas de 0.1
+./cardem-li 4 0.01 10          # De 4 a 10 dB, amb pas de 0.01: 601 proves
+./cardem-li 6.5 0.01 6.7       # Afinament: 21 proves
 ```
 
-`cardem-li` prova els marges 7, 8 i 9 dB amb un bucle Bash. Crida `scripts/run_vad.sh`, filtra el `TOTAL` i desa el resum a [resultats/cardem-li.txt](resultats/cardem-li.txt).
+Els arguments són **inici, pas i final**, com a `seq`. Faig servir el punt decimal. No he de recompilar entre proves.
 
-| Marge | TOTAL |
-|---:|---:|
-| 7 dB | 95,472 % |
-| 8 dB | 95,340 % |
-| 9 dB | 94,433 % |
+El bucle crida `scripts/run_vad.sh`, mostra el marge i el `TOTAL`, i desa:
 
-El valor per defecte continua sent 6 dB: 95,474 %. Per canviar les proves, edito la llista `7 8 9` de `cardem-li`.
+- `.txt`: resultats en ordre de prova.
+- `_ordenat.txt`: resultats ordenats de millor a pitjor amb `sort -t: -k2,2nr`.
+- `.tsv`: dues columnes numèriques per dibuixar una gràfica.
 
-Per provar un sol marge sobre tota la base de dades:
+Cada escombratge té un nom propi, com `resultats/cardem-li_4_0.1_10.txt`. `resultats/cardem-li.txt` conté l'última execució completa.
+
+### Resultats dels escombratges
+
+| Prova | Valors avaluats | Millor marge provat | TOTAL |
+|---|---:|---:|---:|
+| Base | 6 dB | 6 dB | 95,474 % |
+| De 4 a 10, pas 0,1 | 61 | 6,60 dB | 95,634 % |
+| De 6,5 a 6,7, pas 0,01 | 21 | **6,63 dB** | **95,653 %** |
+
+He fet la passada ampla i l'afinament; no he executat les 601 proves de l'interval complet amb pas de 0,01. El millor valor dels provats millora la base en **0,179 punts percentuals**. El valor per defecte del programa continua sent 6 dB.
+
+[Rànquing ampli](resultats/cardem-li_4_0.1_10_ordenat.txt) · [Rànquing fi](resultats/cardem-li_6.5_0.01_6.7_ordenat.txt)
+
+Amb 6,63 dB obtinc 97,61 % de sensibilitat de veu i 93,43 % de precisió: millora el TOTAL, amb una petita baixada de sensibilitat respecte dels 6 dB. [Resum de l’avaluació](resultats/resum_6.63.txt).
+
+![Puntuació en funció del marge: passada ampla](resultats/cardem-li_4_0.1_10.png)
+
+![Puntuació en funció del marge: afinament](resultats/cardem-li_6.5_0.01_6.7.png)
+
+Per generar una gràfica d'un altre escombratge:
 
 ```sh
-scripts/run_vad.sh 8 | grep TOTAL
+python3 scripts/grafica_llindars.py resultats/cardem-li_4_0.1_10.tsv
 ```
 
-Per passar-lo directament al programa:
+En aquest Mac també puc fer servir `../P1/.venv/bin/python`, amb NumPy i Matplotlib ja instal·lats.
+
+La passada de 61 valors ha trigat uns 6 minuts amb el primer script. He reduït les ordres externes i ara copio les etiquetes una vegada per carpeta: la passada fina de 21 valors ha trigat 53 segons, amb el mateix resultat verificat per a 6,6 dB. Un escombratge complet de 601 valors pot trigar aproximadament 25–35 minuts en aquest ordinador.
+
+Per aplicar un marge concret:
 
 ```sh
-bin/vad -i pav_41XX1.wav -o resultats/prova_8.vad -l 8
+scripts/run_vad.sh 6.63 | grep TOTAL
+bin/vad -i pav_41XX1.wav -o resultats/prova_6.63.vad -l 6.63
 ```
 
-`-l` i `--llindar` indiquen el **marge sobre el soroll**, no un nivell absolut. Puc passar decimals, com `-l 6.5`. No he de recompilar entre proves.
+`-l` i `--llindar` indiquen el **marge sobre el soroll**, no un nivell absolut. Les 601 proves correspondrien a 69.115 anàlisis de fitxers. Un pas més petit no garanteix millors resultats en la base de dades cega.
 
-Si modifico la definició de les opcions, regenero la capçalera amb l'eina que inclou la pràctica:
+Si modifico la definició de les opcions, regenero la capçalera:
 
 ```sh
 python3 docopt_c/docopt_c.py src/vad.docopt -o src/vad_docopt.h
@@ -127,7 +152,7 @@ perl scripts/vad_evaluation.pl pav_41XX1.lab
 
 ## Ajust i avaluació de `db.v4`
 
-He comparat **27 combinacions** canviant les constants de `src/vad.c`. Mantinc el mateix algoritme en tots els casos. No he fet servir la gravació personal per triar els paràmetres.
+Per triar la configuració base vaig comparar **27 combinacions** canviant les constants de `src/vad.c`. Mantinc el mateix algoritme en tots els casos. No he fet servir la gravació personal per triar els paràmetres.
 
 | Prova | Inicialització | Veu mínima | Silenci mínim | Marge | Actualització del soroll | TOTAL |
 |---|---:|---:|---:|---:|---:|---:|
@@ -167,6 +192,8 @@ Els paràmetres s'han triat sobre `db.v4`; aquesta puntuació és de desenvolupa
 [Registre de proves](resultats/proves.txt).
 
 [Comprovacions de `-l`, `run_vad.sh` i `cardem-li`](resultats/proves_bash.txt).
+
+[Comprovacions dels escombratges decimals i del rànquing](resultats/proves_escombratge.txt).
 
 ## Extres
 

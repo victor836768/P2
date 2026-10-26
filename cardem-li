@@ -2,11 +2,44 @@
 # Aturo les proves si falla alguna ordre de la cadena.
 set -e
 set -o pipefail
+export LC_ALL=C # Faig servir el punt decimal tant a seq com a sort.
+
+if [[ $# -eq 1 && ( "$1" == "--help" || "$1" == "-h" ) ]]; then
+    echo "Ús: $0 [inici pas final]" # Mostro els tres arguments opcionals.
+    echo "Exemple: $0 4 0.01 10" # Provo de 4 a 10 dB cada 0.01 dB.
+    exit 0
+fi
+if [[ $# -ne 0 && $# -ne 3 ]]; then
+    echo "Ús: $0 [inici pas final]" >&2 # Demano tots tres arguments o cap.
+    exit 1
+fi
+inici="${1-4}" # Començo a 4 dB si no he rebut arguments.
+pas="${2-0.1}" # Avanço 0.1 dB per defecte.
+final="${3-10}" # Acabo a 10 dB per defecte.
+for valor in "$inici" "$pas" "$final"; do # Comprovo els tres nombres.
+    if [[ ! "$valor" =~ ^[0-9]+([.][0-9]+)?$ ]]; then
+        echo "Escriu nombres positius amb punt decimal." >&2
+        exit 1
+    fi
+done
+if ! awk -v inici="$inici" -v pas="$pas" -v final="$final" 'BEGIN {exit !(inici > 0 && pas > 0 && final >= inici)}'; then
+    echo "Cal inici > 0, pas > 0 i final >= inici." >&2 # Evito intervals buits o passos nuls.
+    exit 1
+fi
 
 cd "$(dirname "$0")" # Em situo al directori P2.
 mkdir -p resultats # Preparo la carpeta del resum.
+nom="resultats/cardem-li_${inici}_${pas}_${final}" # Conservo cada escombratge amb un nom diferent.
+valors=$(seq "$inici" "$pas" "$final") # Genero els marges, inclosos els decimals.
 
-for llindar in 7 8 9; do # Provo els tres marges que ha proposat el professor.
+for llindar in $valors; do # Recorro els valors que ha generat seq.
     echo -ne "$llindar\t" # Escric el marge sense saltar de línia.
     scripts/run_vad.sh "$llindar" | grep '===> TOTAL:' # Mostro només la puntuació global.
-done | tee resultats/cardem-li.txt # Deso també les tres puntuacions.
+done | tee "$nom.txt" # Deso les puntuacions en l'ordre de les proves.
+
+sort -t: -k2,2nr "$nom.txt" > "${nom}_ordenat.txt" # Ordeno de millor a pitjor puntuació.
+awk '{gsub(/%/, "", $4); print $1 "\t" $4}' "$nom.txt" > "$nom.tsv" # Preparo dues columnes per dibuixar la corba.
+cp "$nom.txt" resultats/cardem-li.txt # Mantinc també el resum de l'última execució.
+printf 'Millor resultat: ' >&2 # Identifico la primera fila del rànquing.
+head -n 1 "${nom}_ordenat.txt" >&2 # Mostro el millor valor provat.
+echo "Rànquing: ${nom}_ordenat.txt" >&2 # Indico on he desat tots els resultats ordenats.

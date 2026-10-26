@@ -1,0 +1,4 @@
+OK: 61 valors de 4 a 10, pas 0.1; puntuacions, ordre numèric, TSV i gràfica
+OK: 21 valors de 6.5 a 6.7, pas 0.01; puntuacions, ordre numèric, TSV i gràfica
+OK: una base de dades buida provoca error, sense reaprofitar puntuacions antigues
+OK: enllaços del README verificats

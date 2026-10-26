@@ -23,19 +23,30 @@ fi
 # Creo la carpeta on guardaré l'avaluació.
 mkdir -p "$DIR_P2/resultats"
 
-# Genero un .vad per a cada gravació de la base de dades.
-for filewav in "$DB"/*/*.wav; do
-    if [[ ! -f "$filewav" ]]; then
-        echo "No he trobat la base de dades a $DB" >&2
-        exit 1
-    fi
-    group="$(basename "$(dirname "$filewav")")" # Conservo el nom del grup de gravacions.
-    name="$(basename "${filewav%.wav}")" # Obtinc el nom sense extensió.
-    mkdir -p "$OUT/$group" # Creo el directori dels resultats d'aquest grup.
-    cp "${filewav%.wav}.lab" "$OUT/$group/$name.lab" # Copio la referència sense modificar-la.
-    filevad="$OUT/$group/$name.vad" # Indico on guardaré la predicció.
-    "$CMD" -i "$filewav" -o "$filevad" -l "$llindar" # Passo el marge al detector.
+# Recorro les carpetes i copio les referències una sola vegada per grup.
+gravacions=0 # Comprovo que realment hagi analitzat algun fitxer.
+for groupdir in "$DB"/*; do
+    [[ -d "$groupdir" ]] || continue # Salto els elements que no són carpetes.
+    group="${groupdir##*/}" # Obtinc el nom de la carpeta amb Bash.
+    mkdir -p "$OUT/$group" # Creo el directori una sola vegada per grup.
+    cp "$groupdir"/*.lab "$OUT/$group/" # Copio les referències sense modificar-les.
+    for filewav in "$groupdir"/*.wav; do # Analitzo totes les gravacions del grup.
+        if [[ ! -f "$filewav" ]]; then
+            echo "No he trobat àudio a $groupdir" >&2
+            exit 1
+        fi
+        name="${filewav##*/}" # Retiro el camí del fitxer.
+        name="${name%.wav}" # Retiro l'extensió.
+        filevad="$OUT/$group/$name.vad" # Indico on guardaré la predicció.
+        "$CMD" -i "$filewav" -o "$filevad" -l "$llindar" # Passo el marge al detector.
+        gravacions=$((gravacions + 1)) # Compto aquesta gravació.
+    done
 done
+
+if [[ $gravacions -eq 0 ]]; then
+    echo "No he trobat la base de dades a $DB" >&2 # Evito avaluar resultats antics si no hi ha àudio.
+    exit 1
+fi
 
 # Comparo amb les etiquetes originals i deso el resultat complet.
 perl "$DIR_P2/scripts/vad_evaluation.pl" "$OUT"/*/*.lab | tee "$DIR_P2/resultats/evaluacio_llindar_$llindar.txt"
