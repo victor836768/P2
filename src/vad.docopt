@@ -8,6 +8,7 @@ Usage:
 Options:
    -i FILE, --input-wav=FILE   WAVE file for voice activity detection
    -o FILE, --output-vad=FILE  Label file with the result of VAD
+   -l DB, --llindar=DB  Marge en dB per sobre del soroll [default: 6]
    -v, --verbose  Show debug information
    -h, --help     Show this screen
    --version      Show the version of the project

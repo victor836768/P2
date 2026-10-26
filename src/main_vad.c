@@ -1,12 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>  // Comprovo els errors de conversió del marge.
+#include <math.h>  // Comprovo que el marge sigui un nombre finit.
 #include <sndfile.h>  // Llegeixo les mostres amb libsndfile.
 #include "vad.h"
 #include "vad_docopt.h"  // Aprofito el lector d'arguments que ja venia amb la pràctica.
 
 int main(int argc, char *argv[]) {
     DocoptArgs args = docopt(argc, argv, 1, "2.0");  // Llegeixo els noms dels fitxers i l'opció verbose.
+    char *number_end;  // Localitzo el final del nombre escrit per l'usuari.
+    errno = 0;  // Reinicio l'error abans de convertir el text.
+    float margin = strtof(args.llindar, &number_end);  // Converteixo el marge de text a float.
+    if (number_end == args.llindar || *number_end != '\0' || errno != 0 || !isfinite(margin) || margin <= 0) {  // Rebutjo valors invàlids.
+        fprintf(stderr, "El llindar ha de ser un marge positiu en dB.\n");  // Explico el valor que necessito.
+        return 1;  // Aturo el programa abans de tocar els fitxers.
+    }
     if (args.input_wav == NULL || args.output_vad == NULL) {  // Comprovo els dos arguments obligatoris.
         fprintf(stderr, "%s\n", args.usage_pattern);  // Mostro la forma d'executar el programa.
         return 1;  // Indico que falten arguments.
@@ -35,6 +44,7 @@ int main(int argc, char *argv[]) {
         return 1;  // Aturo l'execució.
     }
     unsigned int frame_size = vad_frame_size(data);  // Consulto quantes mostres necessita cada bloc.
+    data->margin_db = margin;  // Aplico el marge rebut per argument.
     float *buffer = malloc(frame_size * sizeof(float));  // Reservo només la memòria d'un bloc.
     if (buffer == NULL) {  // Comprovo la reserva.
         fprintf(stderr, "No hi ha prou memòria.\n");  // Mostro l'error.

@@ -2,6 +2,46 @@
 
 Jordi Albareda Fortuny · Grup 41 · Lloc XX
 
+## Script de proves de classe
+
+Branca `jordi-albareda-canvis-classe-bash-script`, creada a partir de `jordi-albareda`. Faig servir el detector base amb un sol llindar.
+
+```sh
+ninja -C bin
+./cardem-li
+```
+
+`cardem-li` prova els marges 7, 8 i 9 dB amb un bucle Bash. Crida `scripts/run_vad.sh`, filtra el `TOTAL` i desa el resum a [resultats/cardem-li.txt](resultats/cardem-li.txt).
+
+| Marge | TOTAL |
+|---:|---:|
+| 7 dB | 95,472 % |
+| 8 dB | 95,340 % |
+| 9 dB | 94,433 % |
+
+El valor per defecte continua sent 6 dB: 95,474 %. Per canviar les proves, edito la llista `7 8 9` de `cardem-li`.
+
+Per provar un sol marge sobre tota la base de dades:
+
+```sh
+scripts/run_vad.sh 8 | grep TOTAL
+```
+
+Per passar-lo directament al programa:
+
+```sh
+bin/vad -i pav_41XX1.wav -o resultats/prova_8.vad -l 8
+```
+
+`-l` i `--llindar` indiquen el **marge sobre el soroll**, no un nivell absolut. Puc passar decimals, com `-l 6.5`. No he de recompilar entre proves.
+
+Si modifico la definició de les opcions, regenero la capçalera amb l'eina que inclou la pràctica:
+
+```sh
+python3 docopt_c/docopt_c.py src/vad.docopt -o src/vad_docopt.h
+ninja -C bin
+```
+
 ## Compilació i execució
 
 Necessito Meson, Ninja i `libsndfile`.
@@ -104,7 +144,7 @@ Executo:
 scripts/run_vad.sh
 ```
 
-El script analitza les 115 gravacions i guarda les prediccions a `resultats/db`. Copio les referències sense modificar-les i les comparo amb el script proporcionat `vad_evaluation.pl`.
+El script analitza les 115 gravacions i guarda cada prova a `resultats/db/llindar_N`. Copio les referències sense modificar-les i les comparo amb el script proporcionat `vad_evaluation.pl`. El resum complet queda a `resultats/evaluacio_llindar_N.txt`.
 
 | Estat | Sensibilitat (*recall*) | Precisió |
 |---|---:|---:|
@@ -113,7 +153,7 @@ El script analitza les 115 gravacions i guarda les prediccions a `resultats/db`.
 
 **TOTAL: 95,474 %.** El script calcula `sqrt(F2(veu) * F0.5(silenci))`, no una F1 simple.
 
-L'avaluador afegeix silenci al final de tres referències més curtes que l'àudio. He mantingut les etiquetes originals. [Resultat complet](resultats/evaluacio_db.txt).
+L'avaluador afegeix silenci al final de tres referències més curtes que l'àudio. He mantingut les etiquetes originals. [Resultat complet amb 6 dB](resultats/evaluacio_llindar_6.txt).
 
 Els paràmetres s'han triat sobre `db.v4`; aquesta puntuació és de desenvolupament. El detector pot fallar si la veu comença durant la inicialització o si el soroll canvia bruscament.
 
@@ -126,9 +166,11 @@ Els paràmetres s'han triat sobre `db.v4`; aquesta puntuació és de desenvolupa
 
 [Registre de proves](resultats/proves.txt).
 
+[Comprovacions de `-l`, `run_vad.sh` i `cardem-li`](resultats/proves_bash.txt).
+
 ## Extres
 
-No implementats: cancel·lació del silenci i paràmetres del detector configurables des de la línia d'ordres. Mantinc el lector bàsic d'arguments `docopt_c` que ja venia amb la pràctica.
+En aquesta branca afegeixo el marge configurable amb `-l` mitjançant el `docopt_c` del codi base. Les duracions continuen definides al codi. La cancel·lació del silenci no està implementada.
 
 ## Figures
 
@@ -143,7 +185,7 @@ Sense `--export`, el segon script obre els panells interactius de WaveSurfer. El
 
 ## Entrega
 
-Branca local: `jordi-albareda`. El repositori remot configurat és `victor836768/P2`.
+Branca local: `jordi-albareda-canvis-classe-bash-script`. La branca base `jordi-albareda` es conserva separada. El repositori remot configurat és `victor836768/P2`.
 
 Per entregar, cal pujar la branca, fer el pull request indicat al repositori de la pràctica i pujar `pav_41XX1.wav` i `pav_41XX1.lab` a Atenea.
 

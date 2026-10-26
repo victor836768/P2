@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Aturo les proves si falla alguna ordre de la cadena.
+set -e
+set -o pipefail
+
+cd "$(dirname "$0")" # Em situo al directori P2.
+mkdir -p resultats # Preparo la carpeta del resum.
+
+for llindar in 7 8 9; do # Provo els tres marges que ha proposat el professor.
+    echo -ne "$llindar\t" # Escric el marge sense saltar de línia.
+    scripts/run_vad.sh "$llindar" | grep '===> TOTAL:' # Mostro només la puntuació global.
+done | tee resultats/cardem-li.txt # Deso també les tres puntuacions.

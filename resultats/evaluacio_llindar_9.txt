@@ -1,0 +1,583 @@
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2015/pav_2109.lab ****************
+Recall V:  2.27/2.32   97.73%   Precision V:  2.27/2.28   99.63%   F-score V (2)  : 98.10%
+Recall S:  1.76/1.76   99.53%   Precision S:  1.76/1.81   97.08%   F-score S (1/2): 97.56%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2015/pav_2109.lab: 97.831%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2015/pav_2110.lab ****************
+Recall V:  2.68/2.81   95.29%   Precision V:  2.68/2.80   95.71%   F-score V (2)  : 95.37%
+Recall S:  1.39/1.51   92.07%   Precision S:  1.39/1.53   91.32%   F-score S (1/2): 91.47%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2015/pav_2110.lab: 93.400%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2015/pav_2151.lab ****************
+Recall V: 13.17/13.22  99.60%   Precision V: 13.17/14.00  94.05%   F-score V (2)  : 98.44%
+Recall S: 13.24/14.07  94.08%   Precision S: 13.24/13.29  99.60%   F-score S (1/2): 98.45%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2015/pav_2151.lab: 98.443%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2015/pav_2152.lab ****************
+Recall V:  6.93/6.94   99.86%   Precision V:  6.93/7.42   93.36%   F-score V (2)  : 98.49%
+Recall S:  6.03/6.52   92.45%   Precision S:  6.03/6.04   99.83%   F-score S (1/2): 98.26%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2015/pav_2152.lab: 98.375%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2015/pav_2171.lab ****************
+Recall V:  2.47/2.57   96.18%   Precision V:  2.47/2.60   94.92%   F-score V (2)  : 95.92%
+Recall S:  1.80/1.94   93.17%   Precision S:  1.80/1.90   94.84%   F-score S (1/2): 94.50%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2015/pav_2171.lab: 95.212%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2015/pav_2172.lab ****************
+Recall V:  2.47/2.70   91.57%   Precision V:  2.47/2.47   99.98%   F-score V (2)  : 93.14%
+Recall S:  6.02/6.02   99.99%   Precision S:  6.02/6.25   96.36%   F-score S (1/2): 97.07%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2015/pav_2172.lab: 95.084%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/201617q2/pav_1121.lab ****************
+Recall V:  8.02/8.47   94.63%   Precision V:  8.02/8.82   90.90%   F-score V (2)  : 93.86%
+Recall S:  3.14/3.94   79.65%   Precision S:  3.14/3.60   87.35%   F-score S (1/2): 85.69%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/201617q2/pav_1121.lab: 89.681%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/201617q2/pav_1131.lab ****************
+Recall V:  3.41/3.49   97.57%   Precision V:  3.41/3.42   99.63%   F-score V (2)  : 97.97%
+Recall S:  1.98/2.00   99.37%   Precision S:  1.98/2.07   95.89%   F-score S (1/2): 96.57%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/201617q2/pav_1131.lab: 97.267%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/201617q2/pav_1141.lab ****************
+Recall V:  3.37/3.97   84.83%   Precision V:  3.37/3.37  100.00%   F-score V (2)  : 87.49%
+Recall S:  3.61/3.61  100.00%   Precision S:  3.61/4.21   85.69%   F-score S (1/2): 88.22%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/201617q2/pav_1141.lab: 87.851%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/201617q2/pav_1171.lab ****************
+Recall V: 11.82/12.61  93.74%   Precision V: 11.82/11.85  99.77%   F-score V (2)  : 94.88%
+Recall S:  8.75/8.78   99.69%   Precision S:  8.75/9.54   91.72%   F-score S (1/2): 93.21%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/201617q2/pav_1171.lab: 94.043%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/201617q2/pav_2151.lab ****************
+Recall V:  5.31/5.32   99.77%   Precision V:  5.31/5.49   96.68%   F-score V (2)  : 99.14%
+Recall S:  1.86/2.04   91.06%   Precision S:  1.86/1.87   99.35%   F-score S (1/2): 97.57%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/201617q2/pav_2151.lab: 98.353%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_137.lab ****************
+Recall V:  2.41/2.66   90.68%   Precision V:  2.41/2.42   99.48%   F-score V (2)  : 92.31%
+Recall S:  1.52/1.53   99.18%   Precision S:  1.52/1.76   85.97%   F-score S (1/2): 88.32%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_137.lab: 90.294%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_2121.lab ****************
+Recall V:  2.99/4.42   67.71%   Precision V:  2.99/2.99  100.00%   F-score V (2)  : 72.39%
+Recall S:  3.72/3.72  100.00%   Precision S:  3.72/5.14   72.29%   F-score S (1/2): 76.53%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_2121.lab: 74.431%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_2141.lab ****************
+Recall V:  3.94/3.99   98.81%   Precision V:  3.94/4.04   97.65%   F-score V (2)  : 98.58%
+Recall S:  1.85/1.95   95.12%   Precision S:  1.85/1.90   97.50%   F-score S (1/2): 97.02%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_2141.lab: 97.793%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_2142.lab ****************
+Recall V:  3.34/3.58   93.16%   Precision V:  3.34/3.34   99.93%   F-score V (2)  : 94.44%
+Recall S:  1.24/1.25   99.80%   Precision S:  1.24/1.49   83.55%   F-score S (1/2): 86.36%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_2142.lab: 90.312%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_2171.lab ****************
+Recall V:  3.43/3.67   93.45%   Precision V:  3.43/3.43  100.00%   F-score V (2)  : 94.69%
+Recall S:  6.74/6.74  100.00%   Precision S:  6.74/6.98   96.55%   F-score S (1/2): 97.22%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_2171.lab: 95.948%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_2191.lab ****************
+Recall V:  3.85/4.11   93.79%   Precision V:  3.85/3.85  100.00%   F-score V (2)  : 94.97%
+Recall S:  2.92/2.92  100.00%   Precision S:  2.92/3.17   91.96%   F-score S (1/2): 93.46%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_2191.lab: 94.212%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_231.lab ****************
+Recall V:  4.79/4.97   96.48%   Precision V:  4.79/5.46   87.80%   F-score V (2)  : 94.61%
+Recall S:  4.48/5.15   87.07%   Precision S:  4.48/4.66   96.25%   F-score S (1/2): 94.26%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_231.lab: 94.438%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_232.lab ****************
+Recall V:  2.89/2.95   98.05%   Precision V:  2.89/3.08   93.91%   F-score V (2)  : 97.19%
+Recall S:  2.19/2.38   92.12%   Precision S:  2.19/2.25   97.44%   F-score S (1/2): 96.33%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_232.lab: 96.761%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_233.lab ****************
+Recall V:  3.34/3.46   96.54%   Precision V:  3.34/3.41   97.96%   F-score V (2)  : 96.82%
+Recall S:  3.00/3.07   97.73%   Precision S:  3.00/3.12   96.17%   F-score S (1/2): 96.48%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_233.lab: 96.650%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_2342.lab ****************
+Recall V:  2.30/2.39   95.96%   Precision V:  2.30/2.30   99.92%   F-score V (2)  : 96.73%
+Recall S:  1.94/1.94   99.90%   Precision S:  1.94/2.04   95.25%   F-score S (1/2): 96.14%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_2342.lab: 96.434%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_236.lab ****************
+Recall V:  2.30/3.36   68.40%   Precision V:  2.30/2.30  100.00%   F-score V (2)  : 73.02%
+Recall S:  1.71/1.71  100.00%   Precision S:  1.71/2.78   61.74%   F-score S (1/2): 66.86%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_236.lab: 69.870%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_237.lab ****************
+Recall V:  4.85/5.32   91.23%   Precision V:  4.85/5.19   93.53%   F-score V (2)  : 91.68%
+Recall S:  2.41/2.74   87.76%   Precision S:  2.41/2.88   83.78%   F-score S (1/2): 84.55%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_237.lab: 88.042%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_238.lab ****************
+Recall V:  4.24/4.56   93.09%   Precision V:  4.24/4.39   96.70%   F-score V (2)  : 93.79%
+Recall S:  2.60/2.75   94.72%   Precision S:  2.60/2.92   89.20%   F-score S (1/2): 90.25%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_238.lab: 92.006%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_239.lab ****************
+Recall V:  4.47/5.71   78.16%   Precision V:  4.47/4.47   99.89%   F-score V (2)  : 81.71%
+Recall S:  2.66/2.66   99.82%   Precision S:  2.66/3.91   68.05%   F-score S (1/2): 72.68%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2017-18q2/pav_239.lab: 77.063%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_21101.lab ****************
+Warning: adding extra silence [7.3431875, 7.607625] at the end of ref: /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_21101.lab
+Recall V:  3.26/5.90   55.23%   Precision V:  3.26/3.26  100.00%   F-score V (2)  : 60.66%
+Recall S:  1.70/1.70  100.00%   Precision S:  1.70/4.35   39.22%   F-score S (1/2): 44.64%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_21101.lab: 52.039%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2111.lab ****************
+Recall V:  7.54/7.71   97.73%   Precision V:  7.54/7.85   96.03%   F-score V (2)  : 97.39%
+Recall S:  1.50/1.81   82.78%   Precision S:  1.50/1.67   89.54%   F-score S (1/2): 88.10%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2111.lab: 92.629%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2121.lab ****************
+Recall V:  3.68/3.75   98.27%   Precision V:  3.68/3.69   99.82%   F-score V (2)  : 98.58%
+Recall S:  0.91/0.92   99.26%   Precision S:  0.91/0.98   93.37%   F-score S (1/2): 94.49%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2121.lab: 96.513%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2131.lab ****************
+Recall V:  3.36/3.36   99.91%   Precision V:  3.36/3.38   99.27%   F-score V (2)  : 99.78%
+Recall S:  2.19/2.22   98.88%   Precision S:  2.19/2.19   99.87%   F-score S (1/2): 99.67%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2131.lab: 99.725%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2141.lab ****************
+Recall V:  5.69/5.99   94.96%   Precision V:  5.69/5.69  100.00%   F-score V (2)  : 95.93%
+Recall S:  1.51/1.51  100.00%   Precision S:  1.51/1.82   83.38%   F-score S (1/2): 86.25%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2141.lab: 90.960%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2151.lab ****************
+Recall V:  3.75/4.19   89.46%   Precision V:  3.75/3.75  100.00%   F-score V (2)  : 91.38%
+Recall S:  2.45/2.45  100.00%   Precision S:  2.45/2.89   84.72%   F-score S (1/2): 87.39%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2151.lab: 89.363%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2152.lab ****************
+Recall V:  3.94/4.00   98.55%   Precision V:  3.94/4.41   89.43%   F-score V (2)  : 96.58%
+Recall S:  1.64/2.11   77.91%   Precision S:  1.64/1.70   96.60%   F-score S (1/2): 92.18%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2152.lab: 94.355%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2161.lab ****************
+Recall V:  2.11/2.18   96.59%   Precision V:  2.11/2.11   99.79%   F-score V (2)  : 97.21%
+Recall S:  1.61/1.61   99.72%   Precision S:  1.61/1.68   95.58%   F-score S (1/2): 96.38%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2161.lab: 96.798%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2171.lab ****************
+Recall V: 15.33/15.33 100.00%   Precision V: 15.33/16.13  95.04%   F-score V (2)  : 98.97%
+Recall S:  1.47/2.27   64.83%   Precision S:  1.47/1.47   99.97%   F-score S (1/2): 90.19%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2171.lab: 94.478%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_21x1.lab ****************
+Recall V:  6.99/7.12   98.27%   Precision V:  6.99/7.03   99.48%   F-score V (2)  : 98.51%
+Recall S:  3.52/3.56   98.98%   Precision S:  3.52/3.64   96.63%   F-score S (1/2): 97.09%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_21x1.lab: 97.800%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_231001.lab ****************
+Recall V:  5.09/5.12   99.50%   Precision V:  5.09/5.13   99.26%   F-score V (2)  : 99.45%
+Recall S:  1.34/1.37   97.25%   Precision S:  1.34/1.36   98.11%   F-score S (1/2): 97.94%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_231001.lab: 98.693%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2311.lab ****************
+Recall V:  3.39/4.02   84.26%   Precision V:  3.39/3.41   99.37%   F-score V (2)  : 86.90%
+Recall S:  2.51/2.53   99.15%   Precision S:  2.51/3.14   79.84%   F-score S (1/2): 83.07%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2311.lab: 84.967%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2321.lab ****************
+Recall V:  2.62/2.62   99.92%   Precision V:  2.62/2.64   99.28%   F-score V (2)  : 99.79%
+Recall S:  3.39/3.40   99.44%   Precision S:  3.39/3.39   99.94%   F-score S (1/2): 99.84%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2321.lab: 99.817%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2331.lab ****************
+Recall V:  3.26/3.26  100.00%   Precision V:  3.26/3.33   97.79%   F-score V (2)  : 99.55%
+Recall S:  2.45/2.52   97.09%   Precision S:  2.45/2.45  100.00%   F-score S (1/2): 99.40%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2331.lab: 99.477%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2341.lab ****************
+Recall V:  1.95/1.95   99.88%   Precision V:  1.95/1.96   99.54%   F-score V (2)  : 99.81%
+Recall S:  1.48/1.49   99.39%   Precision S:  1.48/1.48   99.84%   F-score S (1/2): 99.75%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2341.lab: 99.777%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2342.lab ****************
+Recall V:  4.23/4.25   99.56%   Precision V:  4.23/4.24   99.71%   F-score V (2)  : 99.59%
+Recall S:  2.15/2.17   99.43%   Precision S:  2.15/2.17   99.14%   F-score S (1/2): 99.20%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2342.lab: 99.395%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_235.lab ****************
+Recall V: 11.72/12.85  91.21%   Precision V: 11.72/11.72  99.97%   F-score V (2)  : 92.84%
+Recall S:  5.81/5.81   99.95%   Precision S:  5.81/6.94   83.73%   F-score S (1/2): 86.54%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_235.lab: 89.631%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2361.lab ****************
+Recall V:  4.35/4.42   98.42%   Precision V:  4.35/4.36   99.85%   F-score V (2)  : 98.70%
+Recall S:  2.20/2.21   99.70%   Precision S:  2.20/2.27   96.92%   F-score S (1/2): 97.46%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2361.lab: 98.079%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2371.lab ****************
+Recall V:  4.88/4.93   99.03%   Precision V:  4.88/4.90   99.62%   F-score V (2)  : 99.15%
+Recall S:  3.81/3.83   99.51%   Precision S:  3.81/3.85   98.76%   F-score S (1/2): 98.91%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2371.lab: 99.030%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2372.lab ****************
+Recall V:  4.87/5.03   96.87%   Precision V:  4.87/4.99   97.59%   F-score V (2)  : 97.01%
+Recall S:  1.38/1.50   91.97%   Precision S:  1.38/1.53   89.74%   F-score S (1/2): 90.18%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2372.lab: 93.534%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2381.lab ****************
+Recall V:  4.79/4.83   99.22%   Precision V:  4.79/4.82   99.48%   F-score V (2)  : 99.27%
+Recall S:  3.14/3.17   99.21%   Precision S:  3.14/3.18   98.82%   F-score S (1/2): 98.89%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2018-19q2/pav_2381.lab: 99.083%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_2121.lab ****************
+Recall V:  1.99/1.99   99.84%   Precision V:  1.99/2.06   96.35%   F-score V (2)  : 99.12%
+Recall S:  1.46/1.53   95.08%   Precision S:  1.46/1.46   99.79%   F-score S (1/2): 98.81%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_2121.lab: 98.965%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_2151.lab ****************
+Recall V:  2.46/2.58   95.16%   Precision V:  2.46/2.48   98.99%   F-score V (2)  : 95.90%
+Recall S:  1.88/1.91   98.69%   Precision S:  1.88/2.00   93.77%   F-score S (1/2): 94.71%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_2151.lab: 95.303%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_2161.lab ****************
+Recall V:  4.96/4.96   99.98%   Precision V:  4.96/6.57   75.60%   F-score V (2)  : 93.92%
+Recall S:  4.28/5.88   72.75%   Precision S:  4.28/4.28   99.98%   F-score S (1/2): 93.02%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_2161.lab: 93.467%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_2171.lab ****************
+Recall V:  1.21/1.25   96.47%   Precision V:  1.21/1.32   91.42%   F-score V (2)  : 95.41%
+Recall S:  0.73/0.84   86.51%   Precision S:  0.73/0.77   94.27%   F-score S (1/2): 92.61%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_2171.lab: 93.999%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_2181.lab ****************
+Recall V:  3.18/3.18  100.00%   Precision V:  3.18/3.43   92.60%   F-score V (2)  : 98.43%
+Recall S:  2.72/2.97   91.46%   Precision S:  2.72/2.72  100.00%   F-score S (1/2): 98.17%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_2181.lab: 98.297%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_23102.lab ****************
+Recall V:  2.74/3.41   80.26%   Precision V:  2.74/2.77   98.95%   F-score V (2)  : 83.41%
+Recall S:  3.54/3.57   99.18%   Precision S:  3.54/4.21   84.00%   F-score S (1/2): 86.65%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_23102.lab: 85.015%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_2321.lab ****************
+Recall V:  4.65/4.90   94.86%   Precision V:  4.65/4.65  100.00%   F-score V (2)  : 95.85%
+Recall S:  4.01/4.01  100.00%   Precision S:  4.01/4.26   94.09%   F-score S (1/2): 95.21%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_2321.lab: 95.529%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_2330.lab ****************
+Recall V:  2.87/2.99   95.90%   Precision V:  2.87/3.50   81.93%   F-score V (2)  : 92.74%
+Recall S:  2.06/2.70   76.55%   Precision S:  2.06/2.19   94.40%   F-score S (1/2): 90.19%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_2330.lab: 91.457%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_2341.lab ****************
+Recall V:  6.07/6.64   91.38%   Precision V:  6.07/6.07   99.96%   F-score V (2)  : 92.97%
+Recall S:  4.04/4.05   99.94%   Precision S:  4.04/4.62   87.60%   F-score S (1/2): 89.82%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_2341.lab: 91.383%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_2342.lab ****************
+Recall V:  2.79/3.11   89.88%   Precision V:  2.79/2.89   96.71%   F-score V (2)  : 91.17%
+Recall S:  3.21/3.30   97.12%   Precision S:  3.21/3.52   91.07%   F-score S (1/2): 92.22%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_2342.lab: 91.693%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_235.lab ****************
+Warning: adding extra silence [13.8527296, 15.548875] at the end of ref: /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_235.lab
+Recall V:  6.92/7.57   91.34%   Precision V:  6.92/7.23   95.70%   F-score V (2)  : 92.18%
+Recall S:  7.66/7.97   96.10%   Precision S:  7.66/8.32   92.12%   F-score S (1/2): 92.89%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_235.lab: 92.533%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_2371.lab ****************
+Recall V:  4.41/4.58   96.41%   Precision V:  4.41/4.51   97.87%   F-score V (2)  : 96.70%
+Recall S:  7.22/7.31   98.69%   Precision S:  7.22/7.38   97.77%   F-score S (1/2): 97.95%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_2371.lab: 97.324%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_2381.lab ****************
+Recall V:  3.99/4.01   99.59%   Precision V:  3.99/4.10   97.44%   F-score V (2)  : 99.15%
+Recall S:  2.51/2.62   95.98%   Precision S:  2.51/2.53   99.35%   F-score S (1/2): 98.65%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2019-20q2/pav_2381.lab: 98.902%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2106.lab ****************
+Warning: adding extra silence [7.5795742, 9.437500] at the end of ref: /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2106.lab
+Recall V:  4.75/4.75  100.00%   Precision V:  4.75/5.90   80.52%   F-score V (2)  : 95.39%
+Recall S:  3.54/4.69   75.48%   Precision S:  3.54/3.54  100.00%   F-score S (1/2): 93.90%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2106.lab: 94.640%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_21101.lab ****************
+Recall V:  3.20/3.63   88.23%   Precision V:  3.20/3.20  100.00%   F-score V (2)  : 90.36%
+Recall S:  4.86/4.86  100.00%   Precision S:  4.86/5.29   91.92%   F-score S (1/2): 93.43%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_21101.lab: 91.881%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2111.lab ****************
+Recall V:  4.52/4.52  100.00%   Precision V:  4.52/5.88   76.83%   F-score V (2)  : 94.31%
+Recall S:  1.55/2.92   53.30%   Precision S:  1.55/1.55  100.00%   F-score S (1/2): 85.09%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2111.lab: 89.581%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2141.lab ****************
+Recall V:  6.25/6.27   99.67%   Precision V:  6.25/7.12   87.75%   F-score V (2)  : 97.03%
+Recall S:  1.21/2.09   58.22%   Precision S:  1.21/1.24   98.33%   F-score S (1/2): 86.42%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2141.lab: 91.573%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2151.lab ****************
+Recall V:  4.84/4.87   99.49%   Precision V:  4.84/5.68   85.30%   F-score V (2)  : 96.28%
+Recall S:  2.59/3.42   75.60%   Precision S:  2.59/2.61   99.04%   F-score S (1/2): 93.26%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2151.lab: 94.760%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2301.lab ****************
+Recall V:  4.95/5.18   95.40%   Precision V:  4.95/5.36   92.29%   F-score V (2)  : 94.76%
+Recall S:  3.37/3.78   89.06%   Precision S:  3.37/3.61   93.39%   F-score S (1/2): 92.49%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2301.lab: 93.620%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2301_01.lab ****************
+Recall V:  4.70/5.11   92.10%   Precision V:  4.70/4.96   94.86%   F-score V (2)  : 92.64%
+Recall S:  3.19/3.45   92.61%   Precision S:  3.19/3.60   88.79%   F-score S (1/2): 89.53%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2301_01.lab: 91.072%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2301_02.lab ****************
+Recall V:  6.97/7.20   96.84%   Precision V:  6.97/6.97  100.00%   F-score V (2)  : 97.46%
+Recall S:  1.45/1.45  100.00%   Precision S:  1.45/1.68   86.46%   F-score S (1/2): 88.87%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2301_02.lab: 93.061%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2311.lab ****************
+Recall V:  7.75/7.93   97.70%   Precision V:  7.75/8.13   95.27%   F-score V (2)  : 97.20%
+Recall S:  5.38/5.76   93.33%   Precision S:  5.38/5.56   96.72%   F-score S (1/2): 96.02%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2311.lab: 96.609%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2312.lab ****************
+Recall V:  9.70/9.73   99.72%   Precision V:  9.70/9.94   97.61%   F-score V (2)  : 99.29%
+Recall S:  1.54/1.78   86.65%   Precision S:  1.54/1.57   98.24%   F-score S (1/2): 95.68%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2312.lab: 97.467%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2330.lab ****************
+Recall V:  7.13/7.13   99.97%   Precision V:  7.13/8.06   88.43%   F-score V (2)  : 97.42%
+Recall S:  2.06/2.99   68.79%   Precision S:  2.06/2.06   99.88%   F-score S (1/2): 91.60%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2330.lab: 94.468%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2331.lab ****************
+Recall V:  3.77/3.95   95.32%   Precision V:  3.77/3.77   99.87%   F-score V (2)  : 96.19%
+Recall S:  3.48/3.49   99.86%   Precision S:  3.48/3.67   94.96%   F-score S (1/2): 95.90%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2331.lab: 96.045%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2332.lab ****************
+Recall V:  3.07/3.94   77.89%   Precision V:  3.07/3.07   99.84%   F-score V (2)  : 81.47%
+Recall S:  4.96/4.96   99.90%   Precision S:  4.96/5.83   85.07%   F-score S (1/2): 87.67%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2020-21q2/pav_2332.lab: 84.516%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2021-22q2/pav_21101.lab ****************
+Recall V:  3.53/3.65   96.72%   Precision V:  3.53/3.76   93.86%   F-score V (2)  : 96.13%
+Recall S:  3.04/3.27   92.93%   Precision S:  3.04/3.16   96.20%   F-score S (1/2): 95.53%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2021-22q2/pav_21101.lab: 95.832%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2021-22q2/pav_2121.lab ****************
+Recall V:  4.50/4.85   92.76%   Precision V:  4.50/4.50  100.00%   F-score V (2)  : 94.12%
+Recall S:  3.71/3.71  100.00%   Precision S:  3.71/4.06   91.34%   F-score S (1/2): 92.95%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2021-22q2/pav_2121.lab: 93.532%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2021-22q2/pav_2141.lab ****************
+Recall V:  8.80/9.00   97.81%   Precision V:  8.80/9.49   92.73%   F-score V (2)  : 96.75%
+Recall S: 10.98/11.67  94.08%   Precision S: 10.98/11.18  98.24%   F-score S (1/2): 97.38%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2021-22q2/pav_2141.lab: 97.065%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2021-22q2/pav_2151.lab ****************
+Recall V: 14.24/14.48  98.33%   Precision V: 14.24/14.29  99.64%   F-score V (2)  : 98.59%
+Recall S:  9.62/9.67   99.47%   Precision S:  9.62/9.86   97.55%   F-score S (1/2): 97.93%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2021-22q2/pav_2151.lab: 98.261%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2021-22q2/pav_2171.lab ****************
+Recall V:  4.05/4.06   99.91%   Precision V:  4.05/4.31   94.04%   F-score V (2)  : 98.67%
+Recall S:  1.67/1.93   86.69%   Precision S:  1.67/1.68   99.77%   F-score S (1/2): 96.85%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2021-22q2/pav_2171.lab: 97.758%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2021-22q2/pav_2181.lab ****************
+Recall V:  6.25/6.34   98.65%   Precision V:  6.25/6.28   99.56%   F-score V (2)  : 98.83%
+Recall S:  2.24/2.27   98.78%   Precision S:  2.24/2.33   96.32%   F-score S (1/2): 96.80%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2021-22q2/pav_2181.lab: 97.810%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2021-22q2/pav_2311.lab ****************
+Recall V:  4.09/4.25   96.35%   Precision V:  4.09/4.13   99.10%   F-score V (2)  : 96.89%
+Recall S:  3.97/4.00   99.07%   Precision S:  3.97/4.12   96.24%   F-score S (1/2): 96.79%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2021-22q2/pav_2311.lab: 96.843%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2021-22q2/pav_2341.lab ****************
+Recall V:  5.08/5.09   99.81%   Precision V:  5.08/5.42   93.73%   F-score V (2)  : 98.54%
+Recall S:  3.01/3.35   89.87%   Precision S:  3.01/3.02   99.69%   F-score S (1/2): 97.56%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2021-22q2/pav_2341.lab: 98.045%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2021-22q2/pav_2361.lab ****************
+Recall V:  5.59/5.63   99.38%   Precision V:  5.59/5.62   99.48%   F-score V (2)  : 99.40%
+Recall S:  0.95/0.98   97.02%   Precision S:  0.95/0.99   96.45%   F-score S (1/2): 96.56%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2021-22q2/pav_2361.lab: 97.968%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2022-23q2/pav_2101.lab ****************
+Recall V:  4.45/4.45   99.96%   Precision V:  4.45/5.17   86.09%   F-score V (2)  : 96.84%
+Recall S:  0.86/1.58   54.34%   Precision S:  0.86/0.86   99.78%   F-score S (1/2): 85.48%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2022-23q2/pav_2101.lab: 90.983%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2022-23q2/pav_2121.lab ****************
+Recall V:  4.74/4.75   99.71%   Precision V:  4.74/4.79   98.95%   F-score V (2)  : 99.55%
+Recall S:  3.43/3.48   98.55%   Precision S:  3.43/3.44   99.59%   F-score S (1/2): 99.38%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2022-23q2/pav_2121.lab: 99.468%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2022-23q2/pav_2141.lab ****************
+Recall V:  1.34/1.97   68.04%   Precision V:  1.34/1.35   99.34%   F-score V (2)  : 72.61%
+Recall S:  1.77/1.77   99.50%   Precision S:  1.77/2.40   73.71%   F-score S (1/2): 77.74%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2022-23q2/pav_2141.lab: 75.130%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2022-23q2/pav_2152.lab ****************
+Recall V:  6.87/6.93   99.18%   Precision V:  6.87/7.26   94.69%   F-score V (2)  : 98.25%
+Recall S:  4.02/4.40   91.24%   Precision S:  4.02/4.07   98.60%   F-score S (1/2): 97.04%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2022-23q2/pav_2152.lab: 97.639%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2022-23q2/pav_2171.lab ****************
+Recall V:  2.07/2.22   93.22%   Precision V:  2.07/2.33   88.72%   F-score V (2)  : 92.29%
+Recall S:  1.13/1.39   81.08%   Precision S:  1.13/1.28   88.23%   F-score S (1/2): 86.70%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2022-23q2/pav_2171.lab: 89.448%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2022-23q2/pav_2182.lab ****************
+Recall V:  1.61/1.62   99.50%   Precision V:  1.61/1.73   93.09%   F-score V (2)  : 98.15%
+Recall S:  0.96/1.08   88.95%   Precision S:  0.96/0.97   99.16%   F-score S (1/2): 96.93%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2022-23q2/pav_2182.lab: 97.537%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2022-23q2/pav_2311.lab ****************
+Recall V:  4.22/4.23   99.71%   Precision V:  4.22/4.25   99.23%   F-score V (2)  : 99.62%
+Recall S:  2.16/2.20   98.51%   Precision S:  2.16/2.18   99.44%   F-score S (1/2): 99.26%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2022-23q2/pav_2311.lab: 99.436%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2022-23q2/pav_2341.lab ****************
+Recall V:  2.70/2.70  100.00%   Precision V:  2.70/2.88   93.82%   F-score V (2)  : 98.70%
+Recall S:  0.79/0.97   81.62%   Precision S:  0.79/0.79  100.00%   F-score S (1/2): 95.69%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2022-23q2/pav_2341.lab: 97.183%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2022-23q2/pav_2351.lab ****************
+Recall V:  4.06/4.07   99.90%   Precision V:  4.06/4.45   91.34%   F-score V (2)  : 98.06%
+Recall S:  2.90/3.29   88.28%   Precision S:  2.90/2.91   99.85%   F-score S (1/2): 97.30%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2022-23q2/pav_2351.lab: 97.680%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2022-23q2/pav_2352.lab ****************
+Recall V:  4.18/4.19   99.91%   Precision V:  4.18/4.26   98.16%   F-score V (2)  : 99.56%
+Recall S:  3.12/3.20   97.56%   Precision S:  3.12/3.13   99.88%   F-score S (1/2): 99.41%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2022-23q2/pav_2352.lab: 99.483%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_21101.lab ****************
+Recall V:  5.27/5.27   99.95%   Precision V:  5.27/5.58   94.39%   F-score V (2)  : 98.79%
+Recall S:  6.68/7.00   95.53%   Precision S:  6.68/6.69   99.96%   F-score S (1/2): 99.04%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_21101.lab: 98.913%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_21102.lab ****************
+Recall V:  5.12/5.16   99.34%   Precision V:  5.12/5.31   96.45%   F-score V (2)  : 98.75%
+Recall S:  6.71/6.90   97.26%   Precision S:  6.71/6.74   99.49%   F-score S (1/2): 99.04%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_21102.lab: 98.893%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_215.lab ****************
+Recall V: 17.35/17.75  97.73%   Precision V: 17.35/19.30  89.89%   F-score V (2)  : 96.06%
+Recall S:  2.84/4.79   59.30%   Precision S:  2.84/3.25   87.60%   F-score S (1/2): 79.97%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_215.lab: 87.643%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_2171.lab ****************
+Recall V:  5.29/5.44   97.29%   Precision V:  5.29/5.46   96.94%   F-score V (2)  : 97.22%
+Recall S:  9.39/9.56   98.25%   Precision S:  9.39/9.54   98.45%   F-score S (1/2): 98.41%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_2171.lab: 97.816%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_2181.lab ****************
+Recall V:  6.97/7.12   97.89%   Precision V:  6.97/7.00   99.52%   F-score V (2)  : 98.21%
+Recall S:  3.28/3.31   98.99%   Precision S:  3.28/3.43   95.63%   F-score S (1/2): 96.28%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_2181.lab: 97.243%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_2182.lab ****************
+Recall V: 13.15/13.22  99.45%   Precision V: 13.15/13.69  96.04%   F-score V (2)  : 98.75%
+Recall S: 12.57/13.11  95.86%   Precision S: 12.57/12.64  99.43%   F-score S (1/2): 98.69%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_2182.lab: 98.722%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_2183.lab ****************
+Recall V: 18.03/19.18  93.98%   Precision V: 18.03/18.06  99.82%   F-score V (2)  : 95.09%
+Recall S:  4.03/4.06   99.20%   Precision S:  4.03/5.18   77.70%   F-score S (1/2): 81.22%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_2183.lab: 87.884%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_2310.lab ****************
+Recall V:  6.83/7.02   97.29%   Precision V:  6.83/6.83   99.99%   F-score V (2)  : 97.81%
+Recall S:  3.40/3.40   99.97%   Precision S:  3.40/3.59   94.69%   F-score S (1/2): 95.70%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_2310.lab: 96.753%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_23121.lab ****************
+Recall V:  3.68/3.68   99.89%   Precision V:  3.68/4.05   90.80%   F-score V (2)  : 97.93%
+Recall S:  1.76/2.13   82.53%   Precision S:  1.76/1.76   99.77%   F-score S (1/2): 95.76%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_23121.lab: 96.840%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_232.lab ****************
+Recall V:  7.51/7.81   96.15%   Precision V:  7.51/7.51  100.00%   F-score V (2)  : 96.89%
+Recall S:  4.81/4.81  100.00%   Precision S:  4.81/5.12   94.12%   F-score S (1/2): 95.24%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_232.lab: 96.062%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_235.lab ****************
+Recall V:  5.70/7.22   78.99%   Precision V:  5.70/5.77   98.84%   F-score V (2)  : 82.29%
+Recall S:  2.75/2.82   97.62%   Precision S:  2.75/4.27   64.45%   F-score S (1/2): 69.15%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_235.lab: 75.435%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_2362.lab ****************
+Recall V:  4.25/4.26   99.74%   Precision V:  4.25/4.43   95.96%   F-score V (2)  : 98.96%
+Recall S:  1.19/1.37   86.89%   Precision S:  1.19/1.20   99.07%   F-score S (1/2): 96.37%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2023-24q2/pav_2362.lab: 97.658%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2024-25q2/pav_2111.lab ****************
+Recall V:  6.36/6.36  100.00%   Precision V:  6.36/6.52   97.67%   F-score V (2)  : 99.52%
+Recall S:  0.99/1.14   86.68%   Precision S:  0.99/0.99  100.00%   F-score S (1/2): 97.02%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2024-25q2/pav_2111.lab: 98.264%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2024-25q2/pav_21111.lab ****************
+Recall V:  8.33/8.93   93.21%   Precision V:  8.33/8.33   99.97%   F-score V (2)  : 94.49%
+Recall S:  3.57/3.57   99.93%   Precision S:  3.57/4.17   85.47%   F-score S (1/2): 88.02%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2024-25q2/pav_21111.lab: 91.197%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2024-25q2/pav_2141.lab ****************
+Recall V:  8.18/8.22   99.52%   Precision V:  8.18/8.19   99.84%   F-score V (2)  : 99.58%
+Recall S:  1.63/1.64   99.21%   Precision S:  1.63/1.67   97.63%   F-score S (1/2): 97.94%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2024-25q2/pav_2141.lab: 98.757%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2024-25q2/pav_2161.lab ****************
+Recall V:  2.43/2.44   99.65%   Precision V:  2.43/2.80   86.87%   F-score V (2)  : 96.80%
+Recall S:  1.61/1.98   81.44%   Precision S:  1.61/1.62   99.47%   F-score S (1/2): 95.25%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2024-25q2/pav_2161.lab: 96.025%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2024-25q2/pav_2171.lab ****************
+Recall V:  3.16/3.16   99.95%   Precision V:  3.16/3.42   92.37%   F-score V (2)  : 98.34%
+Recall S:  1.68/1.94   86.57%   Precision S:  1.68/1.68   99.91%   F-score S (1/2): 96.92%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2024-25q2/pav_2171.lab: 97.626%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2024-25q2/pav_2181.lab ****************
+Recall V:  6.26/6.26   99.96%   Precision V:  6.26/6.38   98.16%   F-score V (2)  : 99.60%
+Recall S:  1.24/1.35   91.35%   Precision S:  1.24/1.24   99.80%   F-score S (1/2): 97.98%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2024-25q2/pav_2181.lab: 98.787%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2025-26q2/pav_2111.lab ****************
+Recall V:  4.03/4.33   92.98%   Precision V:  4.03/4.03  100.00%   F-score V (2)  : 94.30%
+Recall S:  5.53/5.53  100.00%   Precision S:  5.53/5.84   94.79%   F-score S (1/2): 95.78%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2025-26q2/pav_2111.lab: 95.040%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2025-26q2/pav_2121.lab ****************
+Recall V:  4.22/4.40   95.81%   Precision V:  4.22/4.25   99.29%   F-score V (2)  : 96.49%
+Recall S:  2.63/2.66   98.87%   Precision S:  2.63/2.81   93.44%   F-score S (1/2): 94.47%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2025-26q2/pav_2121.lab: 95.475%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2025-26q2/pav_2131.lab ****************
+Recall V:  3.38/3.52   96.02%   Precision V:  3.38/3.97   85.15%   F-score V (2)  : 93.63%
+Recall S:  2.16/2.75   78.56%   Precision S:  2.16/2.30   93.91%   F-score S (1/2): 90.38%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2025-26q2/pav_2131.lab: 91.988%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2025-26q2/pav_2141.lab ****************
+Recall V:  6.72/6.72  100.00%   Precision V:  6.72/7.20   93.33%   F-score V (2)  : 98.59%
+Recall S:  1.07/1.55   69.13%   Precision S:  1.07/1.07  100.00%   F-score S (1/2): 91.80%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2025-26q2/pav_2141.lab: 95.136%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2025-26q2/pav_2171.lab ****************
+Recall V:  7.14/7.16   99.73%   Precision V:  7.14/7.19   99.33%   F-score V (2)  : 99.65%
+Recall S:  7.40/7.45   99.35%   Precision S:  7.40/7.42   99.74%   F-score S (1/2): 99.66%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2025-26q2/pav_2171.lab: 99.658%
+
+**************** /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2025-26q2/pav_2181.lab ****************
+Recall V:  8.11/8.13   99.78%   Precision V:  8.11/8.40   96.55%   F-score V (2)  : 99.12%
+Recall S:  3.97/4.26   93.20%   Precision S:  3.97/3.99   99.55%   F-score S (1/2): 98.21%
+===> /Users/jordialbaredafortuny/PAV/P2/resultats/db/llindar_9/2025-26q2/pav_2181.lab: 98.665%
+
+**************** Summary ****************
+Recall V:597.54/625.02 95.60%   Precision V:597.54/623.54 95.83%   F-score V (2)  : 95.65%
+Recall S:374.46/400.47 93.51%   Precision S:374.46/401.94 93.16%   F-score S (1/2): 93.23%
+===> TOTAL: 94.433%
+

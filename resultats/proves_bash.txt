@@ -1,0 +1,6 @@
+OK: valor per defecte, -l 6, -l6, --llindar=6 i 6.0 reprodueixen la versió base
+OK: rebutjo marges no numèrics, no finits, negatius, nuls i incomplets
+OK: marge decimal 6.5 acceptat
+OK: run_vad.sh rebutja un argument invàlid
+OK: cardem-li avalua 115 fitxers per marge i desa tres resultats coherents
+OK: enllaços del README verificats

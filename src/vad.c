@@ -24,6 +24,7 @@ VAD_DATA *vad_open(float rate) {
     data->initial_frames = 0;  // Encara no he llegit cap bloc inicial.
     data->initial_sum = 0.0f;  // Inicialitzo la suma de potències.
     data->noise = -100.0f;  // Preparo un valor finit per al silenci absolut.
+    data->margin_db = MARGIN_DB;  // Faig servir 6 dB si no rebo un altre marge.
     data->count = 0;  // Encara no tinc blocs provisionals.
     data->last_feature = -100.0f;  // Inicialitzo el valor que mostraré amb --verbose.
     return data;  // Retorno el detector preparat.
@@ -47,7 +48,7 @@ VAD_STATE vad(VAD_DATA *data, float *x) {
         return ST_SILENCE;  // Resolc també els blocs inicials que havia deixat pendents.
     }
 
-    float threshold = data->noise + MARGIN_DB;  // Sitúo el llindar per sobre del soroll estimat.
+    float threshold = data->noise + data->margin_db;  // Sumo al soroll el marge seleccionat.
     switch (data->state) {
     case ST_SILENCE:
         if (power > threshold) {  // Detecto un possible inici de veu.
@@ -97,5 +98,5 @@ VAD_STATE vad_close(VAD_DATA *data) {
 }
 
 void vad_show_state(const VAD_DATA *data, FILE *out) {
-    fprintf(out, "%s\t%.3f\t%.3f\n", state2str(data->state), data->last_feature, data->noise + MARGIN_DB);  // Mostro estat, potència i llindar.
+    fprintf(out, "%s\t%.3f\t%.3f\n", state2str(data->state), data->last_feature, data->noise + data->margin_db);  // Mostro estat, potència i llindar.
 }
