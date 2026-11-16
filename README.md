@@ -4,6 +4,8 @@ Jordi Albareda Fortuny · Grup 41 · Lloc XX
 
 Aquesta és una branca de prova: `jordi-albareda-prova-baixada`. Surt de `ac4e32a`, igual que les altres dues proves. La versió que dona millor resultat continua a `jordi-albareda`.
 
+Les idees antigues i noves també s’han provat juntes a la branca `jordi-albareda-combinacions`. La comparació completa és a [IDEES.md](IDEES.md).
+
 ## Què he canviat
 
 Permeto un sol bloc baix mentre confirmo l’inici de la veu. Continuo exigint vuit blocs alts. Si hi ha dues baixades, descarto l’intent. Per tant, espero 80 ms o 90 ms segons si hi ha una baixada.
