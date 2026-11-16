@@ -4,7 +4,7 @@
 #include "pav_analysis.h"  // Reutilitzo el càlcul de potència de P1.
 
 const int INIT_FRAMES = 9;  // Estimo el soroll amb els primers 90 ms.
-const int MIN_VOICE = 8;  // Exigeixo 80 ms seguits per confirmar la veu.
+const int MIN_VOICE = 8;  // Exigeixo vuit blocs alts; permeto una sola baixada.
 const int MIN_SILENCE = 17;  // Exigeixo 170 ms seguits per confirmar el silenci.
 const float MARGIN_DB = 5.94f;  // Demano 5,94 dB més que el soroll per detectar veu.
 const float NOISE_ALPHA = 0.00615f;  // Actualitzo lentament la referència durant el silenci.
@@ -25,6 +25,7 @@ VAD_DATA *vad_open(float rate) {
     data->initial_sum = 0.0f;  // Inicialitzo la suma de potències.
     data->noise = -100.0f;  // Preparo un valor finit per al silenci absolut.
     data->margin_db = MARGIN_DB;  // Faig servir 5,94 dB si no rebo un altre marge.
+    data->voice_dips = 0;  // Encara no he permès cap baixada.
     data->count = 0;  // Encara no tinc blocs provisionals.
     data->last_feature = -100.0f;  // Inicialitzo el valor que mostraré amb --verbose.
     return data;  // Retorno el detector preparat.
@@ -54,6 +55,7 @@ VAD_STATE vad(VAD_DATA *data, float *x) {
         if (power > threshold) {  // Detecto un possible inici de veu.
             data->state = ST_MAYBE_VOICE;  // Espero abans de donar la veu per segura.
             data->count = 1;  // Compto el primer bloc candidat.
+            data->voice_dips = 0;  // Cada intent nou pot tenir una sola baixada.
         } else {
             data->noise += NOISE_ALPHA * (power - data->noise);  // Adapto el soroll mentre continuo en silenci.
         }
@@ -62,8 +64,10 @@ VAD_STATE vad(VAD_DATA *data, float *x) {
         if (power > threshold) {  // Comprovo si el nivell continua sent prou alt.
             data->count++;  // Afegeixo un altre bloc candidat.
             if (data->count >= MIN_VOICE) data->state = ST_VOICE;  // Confirmo la veu si dura prou.
+        } else if (data->voice_dips == 0) {
+            data->voice_dips = 1;  // Permeto un bloc baix, però no augmento el recompte.
         } else {
-            data->state = ST_SILENCE;  // Descarto un pic massa curt.
+            data->state = ST_SILENCE;  // Amb dues baixades, descarto aquest intent.
             data->count = 0;  // Reinicio el recompte.
         }
         break;

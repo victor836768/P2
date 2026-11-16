@@ -13,6 +13,7 @@ typedef struct {
     float initial_sum;  // Acumulo la potència lineal dels blocs inicials.
     float noise;  // Guardo la potència estimada del soroll en dB.
     float margin_db;  // Guardo el marge que he rebut per argument.
+    int voice_dips;  // Compto les baixades curtes mentre confirmo la veu.
     int count;  // Compto els blocs consecutius d'un estat provisional.
     float last_feature;  // Guardo la potència actual per a --verbose.
 } VAD_DATA;
