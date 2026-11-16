@@ -1,6 +1,6 @@
 # P2 — Detecció d'activitat vocal
 
-Jordi Albareda Fortuny · Grup 41 · Lloc XX
+Jordi Albareda Fortuny · Grup 41 · Lloc 05
 
 Les idees, les proves separades i la comparació de totes les combinacions estan explicades amb paraules senzilles a [IDEES.md](IDEES.md). El programa de l’estudi és a la branca `jordi-albareda-combinacions`. Mantinc aquesta versió d’entrega: l’afinament de les combinacions arriba a 95,871 %, davant del 95,829 % d’aquesta base.
 
