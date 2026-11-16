@@ -6,8 +6,13 @@ float compute_power(const float *x, unsigned int N) {
 
     if (N == 0) return 0.0f;  // Evito dividir per zero si el bloc és buit.
 
-    for (unsigned int i = 0; i < N; i++) {  // Recorro totes les mostres del bloc.
-        suma += x[i] * x[i];  // Sumo el quadrat de cada mostra.
+    float mitjana = 0.0f;  // Calculo el desplaçament del bloc respecte de zero.
+    for (unsigned int i = 0; i < N; i++) mitjana += x[i];
+    mitjana /= N;
+
+    for (unsigned int i = 0; i < N; i++) {
+        float mostra = x[i] - mitjana;  // Centro les mostres abans de calcular la potència.
+        suma += mostra * mostra;
     }
 
     return 10.0f * log10(suma / N);  // Faig la mitjana i la passo a decibels.
