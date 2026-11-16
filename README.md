@@ -2,7 +2,7 @@
 
 Jordi Albareda Fortuny · Grup 41 · Lloc XX
 
-Les idees, les proves separades i la comparació de totes les combinacions estan explicades amb paraules senzilles a [IDEES.md](IDEES.md). El programa de l’estudi és a la branca `jordi-albareda-combinacions`. Mantinc aquesta versió d’entrega: el millor resultat nou només la supera en uns 0,002 punts.
+Les idees, les proves separades i la comparació de totes les combinacions estan explicades amb paraules senzilles a [IDEES.md](IDEES.md). El programa de l’estudi és a la branca `jordi-albareda-combinacions`. Mantinc aquesta versió d’entrega: l’afinament de les combinacions arriba a 95,871 %, davant del 95,829 % d’aquesta base.
 
 ## Configuració final
 
