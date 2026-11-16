@@ -1,10 +1,44 @@
 # Idees que he fet servir a P2
 
-## Què vull comparar
+Aquí apunto les idees que he fet servir, d’on surten i què ha passat quan les he provat. Algunes són part de la pràctica i altres són proves que he anat afegint.
 
-No miro només les tres últimes idees. També miro les coses que ja tenia el detector: l’espera de veu i silenci, el seguiment del soroll, els dos llindars i el retorn al primer bloc pendent. També provo diferents valors dels paràmetres.
+El codi de les combinacions és a [jordi-albareda-combinacions](https://github.com/victor836768/P2/tree/jordi-albareda-combinacions). La versió d’entrega continua a `jordi-albareda`.
 
-He guardat el programa de proves a [jordi-albareda-combinacions](https://github.com/victor836768/P2/tree/jordi-albareda-combinacions). La versió d’entrega continua a `jordi-albareda`.
+## D’on surt cada idea
+
+### El que ja proposa la pràctica
+
+Al [README original de la pràctica](https://github.com/victor836768/P2/blob/main/README.md) es demana mirar la potència, posar un llindar respecte del silenci inicial i triar duracions mínimes de veu i silenci. També es demana mirar el ZCR i comentar què se’n pot treure.
+
+L’enunciat també proposa ampliacions, com les opcions amb `docopt_c` i la cancel·lació del silenci. No són el mateix que la part bàsica. He fet servir les opcions, però no he fet la cancel·lació del silenci.
+
+Ajustar els valors i mirar el TOTAL també forma part de la pràctica. Els nombres que he acabat fent servir surten de les proves; no són valors fixats per l’enunciat.
+
+### Les proves que he anat afegint
+
+He provat de treure el pic inicial, permetre una baixada curta i restar la mitjana del bloc. Són proves addicionals, no coses que el README demani fer.
+
+També he fet el programa que prova les combinacions i va ajustant els valors. És la manera que he fet servir per comparar-les i buscar una configuració que vagi millor.
+
+Hi ha tres casos que deixo amb l’origen per confirmar: el seguiment del soroll, la histèresi i tornar al primer bloc pendent. No surten demanats explícitament al README original. Els marco com a decisions del programa; falta confirmar si s’havien proposat a classe. Així no els atribueixo al profe ni els poso com a idees pròpies sense saber-ho.
+
+| Idea | D’on surt | Què n’he fet |
+|---|---|---|
+| Potència i llindar respecte del silenci inicial | Part bàsica de l’enunciat | És la base del detector |
+| Duracions mínimes de veu i silenci | Part bàsica de l’enunciat | Les faig servir i en provo els valors |
+| Mirar el ZCR | Part bàsica de l’enunciat | El dibuixo, però no decideixo amb ell |
+| Ajustar valors i avaluar el TOTAL | Enunciat | Ho comprovo amb `db.v4` i l’avaluador de la pràctica |
+| Opcions amb `docopt_c` | Ampliació de l’enunciat | Fet |
+| Cancel·lació del silenci | Ampliació de l’enunciat | No fet |
+| Anar actualitzant el soroll | Decisió del programa; origen de classe per confirmar | Ho provo activat i desactivat |
+| Histèresi | Decisió del programa; origen de classe per confirmar | Ho provo amb un llindar o amb dos |
+| Tornar al primer bloc pendent | Decisió del programa; origen de classe per confirmar | Ho comparo amb posar el límit quan es confirma |
+| Treure el pic inicial | Prova addicional | Provada sola i en combinacions |
+| Permetre una baixada curta | Prova addicional | Provada sola i en combinacions |
+| Treure la mitjana del bloc | Prova addicional | Provada sola i en combinacions |
+| Script de combinacions i cerca dels valors | Forma addicional de fer les proves | Fet; guardo els resultats i el recorregut |
+
+D’on surt una idea i si funciona bé són dues coses diferents. A les proves barrejo les que ja venien de la pràctica amb les que he afegit, per veure quines ajuden juntes.
 
 ## Com decideixo si hi ha veu
 
@@ -18,11 +52,15 @@ Aquest càlcul de potència i els blocs de 10 ms són el punt de partida de tote
 
 ### 1. Esperar abans de confirmar la veu
 
+Això ve de les duracions mínimes que demana l’enunciat.
+
 Demano uns quants blocs alts seguits abans de dir que hi ha veu. Així puc descartar un cop curt. A la base són vuit blocs, és a dir, 80 ms.
 
 Per veure si ajuda, també ho provo sense espera: un sol bloc alt ja confirma veu. Quan l’espera està activada, provo diferents duracions.
 
 ### 2. Esperar abans de confirmar el silenci
+
+Això també ve de les duracions mínimes de l’enunciat.
 
 No tallo la veu per una baixada molt curta. Espero uns quants blocs baixos. A la base són 17 blocs, és a dir, 170 ms.
 
@@ -30,17 +68,23 @@ També ho provo sense aquesta espera i amb altres duracions. Això pot ajudar un
 
 ### 3. Anar canviant el soroll
 
+És una decisió del programa. Deixo per confirmar si es va proposar a classe.
+
 Quan hi ha silenci, faig `soroll += alfa * (potència - soroll)`. Si alfa és petit, el soroll canvia a poc a poc.
 
 Provo diferents valors d’alfa i també alfa zero. Amb zero, el soroll es queda al valor inicial durant tot el fitxer.
 
 ### 4. Fer servir dos llindars
 
+És una prova amb histèresi. Deixo per confirmar si es va proposar a classe.
+
 Puc demanar més potència per començar la veu que per mantenir-la. Això és la histèresi que ja havia provat.
 
-Quan l’activo, provo diferències de 0,5, 1, 1,5 i 2 dB. Quan la desactivo, faig servir el mateix llindar per començar i acabar.
+Quan l’activo, la cerca també va canviant la diferència entre els dos llindars. Quan la desactivo, faig servir el mateix llindar per començar i acabar.
 
 ### 5. Tornar al primer bloc pendent
+
+És una manera de posar els límits dels segments. L’origen de classe queda per confirmar.
 
 Quan confirmo veu després de vuit blocs, puc posar l’inici al primer d’aquests blocs. Això ja ho feia la base. Faig el mateix amb el silenci.
 
@@ -48,11 +92,15 @@ També provo de posar el canvi just quan el confirmo. Així veig què passa si n
 
 ### 6. Deixar fora el pic inicial
 
+Aquesta és una de les proves addicionals.
+
 Si hi ha un cop al començament, el soroll inicial pot sortir massa alt. Provo de deixar fora el bloc més fort i fer la mitjana dels altres.
 
 Guardo el màxim per separat i sumo els altres blocs. No cal guardar tot el començament de l’àudio.
 
 ### 7. Permetre una baixada mentre confirmo veu
+
+Aquesta també és una prova addicional.
 
 Permeto un bloc baix entremig dels blocs alts. Continuo demanant el mateix nombre de blocs alts. El bloc baix no compta per arribar a aquest nombre.
 
@@ -61,6 +109,8 @@ Si confirmo la veu, la baixada queda dins del mateix segment. Si hi ha una segon
 Si he desactivat l’espera de veu, aquesta idea no canvia res: ja confirmo la veu amb el primer bloc alt.
 
 ### 8. Treure el valor mitjà del bloc
+
+És la tercera prova addicional.
 
 Calculo la mitjana de les mostres i la resto abans de calcular la potència. Així un desplaçament constant respecte de zero no compta com a energia del so.
 
@@ -74,7 +124,7 @@ Hi ha vuit idees amb dues opcions cadascuna: activada o desactivada. Per això h
 
 La cerca nova no llegeix els guanyadors anteriors per decidir on comença. Parteixo d’uns valors normals: 100 ms inicials, 50 ms de veu, 150 ms de silenci, marge de 6 dB, alfa de 0,01 i diferència d’1 dB entre llindars.
 
-Per no dependre d’un sol començament, faig tres inicis. El primer surt una mica per sota d’aquests valors, el segon al centre i el tercer una mica per sobre. Els dos extrems es calculen sumant o restant el pas inicial; no són llistes de valors bons triats d’una prova anterior.
+Per no dependre d’un sol començament, faig tres inicis. El primer surt una mica per sota d’aquests valors, el segon al centre i el tercer una mica per sobre. Els altres dos inicis surten de sumar o restar el pas inicial.
 
 | Inici | Temps inicial | Veu mínima | Silenci mínim | Marge | Alfa aproximat | Diferència |
 |---|---:|---:|---:|---:|---:|---:|
@@ -97,7 +147,7 @@ Per a alfa faig servir passos proporcionals: al principi puc provar valors forç
 
 Els passos finals són un bloc de 10 ms per a les duracions, 0,01 dB per al marge i la histèresi, i aproximadament un 1 % per a alfa. No afegeixo expressament decimals rodons ni valors com 5,94 o 6,63 dB. Si apareixen, és perquè el recorregut hi arriba.
 
-Poso límits amplis per no anar cap a valors absurds: 20–400 ms inicials, 20–200 ms de veu, 20–500 ms de silenci, marge de 2–14 dB, alfa entre 0,0001 i 0,1 i diferència entre llindars de 0,01–4 dB. La diferència ha de ser menor que el marge. Aquests són límits de cerca, no els resultats que vull obtenir.
+Poso límits amplis per no anar cap a valors absurds: 20–400 ms inicials, 20–200 ms de veu, 20–500 ms de silenci, marge de 2–14 dB, alfa entre 0,0001 i 0,1 i diferència entre llindars de 0,01–4 dB. La diferència ha de ser menor que el marge. Són els límits dins dels quals deixo que es mogui el programa.
 
 Hi ha un màxim de 60 voltes per inici com a límit de temps. En aquesta execució **cap dels 768 inicis ha arribat al límit**: tots han acabat perquè el pas ja era petit i no milloraven.
 
@@ -116,9 +166,9 @@ Si hi ha histèresi, en aquestes comparacions fixes separo els llindars 1 dB. S�
 
 La cerca adaptativa ha calculat **46.888 configuracions diferents**. El recorregut queda guardat a `recorregut_cerca.csv`: es veu quan mou el centre, quan redueix el pas i quan para.
 
-Respecte de la cerca anterior, **183 combinacions milloren, 66 baixen i set queden igual**. No recupero el guanyador anterior per fer veure que la cerca nova sempre millora. Conservo tots dos resultats a la matriu. Dins de cada recorregut sí que mantinc sempre el millor punt trobat fins llavors.
+Respecte de la cerca anterior, **183 combinacions milloren, 66 baixen i set queden igual**. Les cerques segueixen camins diferents i no sempre troben el mateix punt. Per això guardo tots dos resultats a la matriu. Dins de cada recorregut sí que mantinc sempre el millor punt trobat fins llavors.
 
-Això s’acosta a un bon resultat, però no garanteix el perfecte. Hi pot haver altres zones bones que aquests tres inicis no trobin. A més, tot s’ha ajustat amb `db.v4`, no amb àudios nous.
+Pot ser que hi hagi valors millors que aquests tres inicis no trobin. A més, tot s’ha ajustat amb `db.v4`, no amb àudios nous.
 
 ## Com miro si dues idees es porten bé
 
@@ -139,7 +189,7 @@ Amb els valors de la base actual, això és el que passa en activar cada idea en
 | Treure la mitjana | −0,336 punts | +0,344 punts |
 | Tornar al primer bloc pendent | 0,000 punts | +9,913 punts |
 
-No són els guanys respecte de la base actual. Cada parella pot tenir altres idees activades o desactivades. La taula serveix per veure que el mateix canvi pot anar bé en un cas i malament en un altre.
+Cada parella pot tenir altres idees activades o desactivades. Per això els canvis de la taula no són directament respecte de la base actual. La taula serveix per veure que el mateix canvi pot anar bé en un cas i malament en un altre.
 
 ## Quin resultat ha sortit
 
@@ -152,7 +202,7 @@ No són els guanys respecte de la base actual. Cada parella pot tenir altres ide
 
 La millor combinació manté les esperes de veu i silenci, el seguiment del soroll i el retorn al primer bloc pendent. També fa servir **histèresi i una baixada curta permesa**. No treu el pic inicial ni la mitjana.
 
-Ha arribat a nou blocs inicials, **set blocs de veu**, 17 de silenci, marge de **7,885 dB**, alfa d’aproximadament **0,00402138** i una diferència de **2,09375 dB** entre llindars. Aquests valors són el resultat del recorregut, no valors posats al començament.
+Ha arribat a nou blocs inicials, **set blocs de veu**, 17 de silenci, marge de **7,885 dB**, alfa d’aproximadament **0,00402138** i una diferència de **2,09375 dB** entre llindars. El programa ha arribat a aquests valors seguint la cerca.
 
 El guany és d’uns **0,020 punts respecte de la cerca anterior** i **0,062 punts respecte de la base d’entrega**. La configuració nova queda a la branca de combinacions. El detector per defecte de l’entrega no ha canviat.
 
@@ -431,13 +481,13 @@ Els paràmetres concrets de cada ajust són al [CSV de combinacions ajustades](h
 
 ## Com ho he comprovat
 
-La prova ràpida calcula les potències amb el codi C i fa servir el mateix autòmat del detector. Les referències només serveixen per calcular la puntuació.
+Per no haver de llegir els àudios a cada prova, primer calculo les potències amb el codi C. Després faig servir el mateix detector amb aquestes potències. Les marques de referència només es fan servir per puntuar el resultat.
 
-Després he comprovat **27 configuracions** amb el programa normal, llegint els WAVE originals, i amb el `vad_evaluation.pl` original. Hi ha la base, cada idea sola, cada idea canviada respecte de la base i les deu millors combinacions ajustades. Les puntuacions coincideixen amb les de la prova ràpida dins de l’arrodoniment del Perl.
+Després he comprovat **27 configuracions** amb el programa normal, llegint els WAVE originals, i amb el `vad_evaluation.pl` original. Hi ha la base, cada idea sola, cada idea canviada respecte de la base i les deu millors combinacions ajustades. Els resultats coincideixen, comptant que el Perl només mostra tres decimals al TOTAL.
 
 També he comprovat àudios petits a 8, 16 i 48 kHz: silenci, cops, baixades, desplaçament respecte de zero, els dos llindars, les esperes i els límits dels segments. He provat totes les idees juntes i opcions mal escrites.
 
-Tot això és sobre `db.v4`, que ja havia fet servir per ajustar la base. No és una prova amb dades noves ni una garantia del millor resultat possible.
+Tot això és amb `db.v4`, que ja havia fet servir abans. Caldria provar àudios nous per saber si també va bé fora d’aquesta base.
 
 ## On són les proves
 
