@@ -10,6 +10,7 @@ typedef struct {
     float sampling_rate;  // Guardo la freqüència de mostreig.
     unsigned int frame_length;  // Guardo les mostres de cada bloc de 10 ms.
     int initial_frames;  // Compto els blocs que uso per estimar el soroll inicial.
+    float initial_max;  // Guardo la potència més alta del començament.
     float initial_sum;  // Acumulo la potència lineal dels blocs inicials.
     float noise;  // Guardo la potència estimada del soroll en dB.
     float margin_db;  // Guardo el marge que he rebut per argument.

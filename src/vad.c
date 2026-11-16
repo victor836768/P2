@@ -22,6 +22,7 @@ VAD_DATA *vad_open(float rate) {
     data->sampling_rate = rate;  // Guardo la freqüència del fitxer.
     data->frame_length = (unsigned int) (rate * 0.010);  // Calculo les mostres de 10 ms.
     data->initial_frames = 0;  // Encara no he llegit cap bloc inicial.
+    data->initial_max = 0.0f;  // Encara no he trobat cap màxim.
     data->initial_sum = 0.0f;  // Inicialitzo la suma de potències.
     data->noise = -100.0f;  // Preparo un valor finit per al silenci absolut.
     data->margin_db = MARGIN_DB;  // Faig servir 5,94 dB si no rebo un altre marge.
@@ -40,10 +41,16 @@ VAD_STATE vad(VAD_DATA *data, float *x) {
     data->last_feature = power;  // Conservo la potència per poder revisar-la.
 
     if (data->state == ST_INIT) {  // Estimo el soroll abans de prendre decisions.
-        data->initial_sum += powf(10.0f, power / 10.0f);  // Sumo potències lineals, no decibels.
+        float linear_power = powf(10.0f, power / 10.0f);  // Passo la potència a escala lineal.
+        if (linear_power > data->initial_max) {
+            data->initial_sum += data->initial_max;  // El màxim anterior ara sí que entra a la suma.
+            data->initial_max = linear_power;  // Deixo fora el màxim nou.
+        } else {
+            data->initial_sum += linear_power;  // Sumo els altres blocs.
+        }
         data->initial_frames++;  // Compto aquest bloc inicial.
         if (data->initial_frames < INIT_FRAMES) return ST_UNDEF;  // Espero prou blocs per fer la mitjana.
-        data->noise = 10.0f * log10f(data->initial_sum / data->initial_frames);  // Passo la mitjana a dB.
+        data->noise = 10.0f * log10f(data->initial_sum / (data->initial_frames - 1));  // Faig la mitjana sense el bloc més fort i la passo a dB.
         data->state = ST_SILENCE;  // Considero silenci el període d'inicialització.
         return ST_SILENCE;  // Resolc també els blocs inicials que havia deixat pendents.
     }
