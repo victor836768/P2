@@ -2,11 +2,11 @@
 
 Jordi Albareda Fortuny · Grup 41 · Lloc XX
 
-Les idees i les tres proves noves estan explicades amb paraules senzilles a [IDEES.md](IDEES.md). Les proves són en branques separades; cap ha superat aquesta versió.
+Les idees, les proves separades i la comparació de totes les combinacions estan explicades amb paraules senzilles a [IDEES.md](IDEES.md). El programa de l’estudi és a la branca `jordi-albareda-combinacions`. Mantinc aquesta versió d’entrega: el millor resultat nou només la supera en uns 0,002 punts.
 
 ## Configuració final
 
-La branca d’entrega és `jordi-albareda`. Incorpora el marge configurable, els scripts d’escombratge i la millor configuració verificada amb l’avaluador original.
+La branca d’entrega és `jordi-albareda`. Incorpora el marge configurable, els scripts d’escombratge i la configuració actual d’entrega, verificada amb l’avaluador original.
 
 | Paràmetre | Valor per defecte |
 |---|---:|
