@@ -1,6 +1,6 @@
 # Idees que he fet servir a P2
 
-Aquí apunto les idees que he fet servir, d’on surten i què ha passat quan les he provat. Algunes són part de la pràctica i altres són proves que he anat afegint.
+Aquí he anat apuntant les idees del detector i els resultats de les proves. Algunes ja venien de la pràctica i altres les he afegit després.
 
 El codi de les combinacions és a [jordi-albareda-combinacions](https://github.com/victor836768/P2/tree/jordi-albareda-combinacions). La versió d’entrega continua a `jordi-albareda`.
 
@@ -20,7 +20,7 @@ He provat de treure el pic inicial, permetre una baixada curta i restar la mitja
 
 També he fet el programa que prova les combinacions i va ajustant els valors. És la manera que he fet servir per comparar-les i buscar una configuració que vagi millor.
 
-Hi ha tres casos que deixo amb l’origen per confirmar: el seguiment del soroll, la histèresi i tornar al primer bloc pendent. No surten demanats explícitament al README original. Els marco com a decisions del programa; falta confirmar si s’havien proposat a classe. Així no els atribueixo al profe ni els poso com a idees pròpies sense saber-ho.
+Del seguiment del soroll, la histèresi i tornar al primer bloc pendent falta confirmar si s’havien proposat a classe. No ho he trobat explícitament al README original i ho deixo indicat a la taula.
 
 | Idea | D’on surt | Què n’he fet |
 |---|---|---|
@@ -41,7 +41,7 @@ Hi ha tres casos que deixo amb l’origen per confirmar: el seguiment del soroll
 | Limitar l’actualització del soroll | Inspirat en Pegueroles–Riera, PR #4 | Només actualitzo amb blocs prou propers al soroll |
 | Script de combinacions i cerca dels valors | Forma addicional de fer les proves | Fet; guardo els resultats i el recorregut |
 
-D’on surt una idea i si funciona bé són dues coses diferents. A les proves barrejo les que ja venien de la pràctica amb les que he afegit, per veure quines ajuden juntes.
+He provat les idees juntes per veure quines combinacions van millor, tant si venien de l’enunciat com si les he afegit després.
 
 ## Com decideixo si hi ha veu
 
@@ -55,15 +55,11 @@ Aquest càlcul de potència i els blocs de 10 ms són el punt de partida de tote
 
 ### 1. Esperar abans de confirmar la veu
 
-Això ve de les duracions mínimes que demana l’enunciat.
-
 Demano uns quants blocs alts seguits abans de dir que hi ha veu. Així puc descartar un cop curt. A la base són vuit blocs, és a dir, 80 ms.
 
 Per veure si ajuda, també ho provo sense espera: un sol bloc alt ja confirma veu. Quan l’espera està activada, provo diferents duracions.
 
 ### 2. Esperar abans de confirmar el silenci
-
-Això també ve de les duracions mínimes de l’enunciat.
 
 No tallo la veu per una baixada molt curta. Espero uns quants blocs baixos. A la base són 17 blocs, és a dir, 170 ms.
 
@@ -71,15 +67,11 @@ També ho provo sense aquesta espera i amb altres duracions. Això pot ajudar un
 
 ### 3. Anar canviant el soroll
 
-És una decisió del programa. Deixo per confirmar si es va proposar a classe.
-
 Quan hi ha silenci, faig `soroll += alfa * (potència - soroll)`. Si alfa és petit, el soroll canvia a poc a poc.
 
 Provo diferents valors d’alfa i també alfa zero. Amb zero, el soroll es queda al valor inicial durant tot el fitxer.
 
 ### 4. Fer servir dos llindars
-
-És una prova amb histèresi. Deixo per confirmar si es va proposar a classe.
 
 Puc demanar més potència per començar la veu que per mantenir-la. Això és la histèresi que ja havia provat.
 
@@ -87,23 +79,17 @@ Quan l’activo, la cerca també va canviant la diferència entre els dos llinda
 
 ### 5. Tornar al primer bloc pendent
 
-És una manera de posar els límits dels segments. L’origen de classe queda per confirmar.
-
 Quan confirmo veu després de vuit blocs, puc posar l’inici al primer d’aquests blocs. Això ja ho feia la base. Faig el mateix amb el silenci.
 
 També provo de posar el canvi just quan el confirmo. Així veig què passa si no torno enrere. No miro blocs futurs: espero la confirmació abans d’escriure el límit.
 
 ### 6. Deixar fora el pic inicial
 
-Aquesta és una de les proves addicionals.
-
 Si hi ha un cop al començament, el soroll inicial pot sortir massa alt. Provo de deixar fora el bloc més fort i fer la mitjana dels altres.
 
 Guardo el màxim per separat i sumo els altres blocs. No cal guardar tot el començament de l’àudio.
 
 ### 7. Permetre una baixada mentre confirmo veu
-
-Aquesta també és una prova addicional.
 
 Permeto un bloc baix entremig dels blocs alts. Continuo demanant el mateix nombre de blocs alts. El bloc baix no compta per arribar a aquest nombre.
 
@@ -112,8 +98,6 @@ Si confirmo la veu, la baixada queda dins del mateix segment. Si hi ha una segon
 Si he desactivat l’espera de veu, aquesta idea no canvia res: ja confirmo la veu amb el primer bloc alt.
 
 ### 8. Treure el valor mitjà del bloc
-
-És la tercera prova addicional.
 
 Calculo la mitjana de les mostres i la resto abans de calcular la potència. Així un desplaçament constant respecte de zero no compta com a energia del so.
 
