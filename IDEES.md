@@ -2300,6 +2300,97 @@ També he comprovat àudios petits a 8, 16 i 48 kHz: silenci, cops, baixades, de
 
 Tot això és amb `db.v4`, que ja havia fet servir abans. Caldria provar àudios nous per saber si també va bé fora d’aquesta base.
 
+<!-- inici-proves-pendents -->
+## Proves que quedaven pendents
+
+Després de mirar els PR nous he provat quatre idees més a [jordi-albareda-proves-pendents](https://github.com/victor836768/P2/tree/jordi-albareda-proves-pendents).
+
+- **Soroll a dues velocitats:** quan la potència baixa, el soroll es mou més ràpid. Quan puja, mantinc el ritme normal.
+- **Límit del soroll segons la veu:** també estimo el nivell de veu i evito que el soroll quedi massa per sota seu.
+- **Entrada directa:** si arriba un bloc molt fort, puc confirmar veu sense esperar tota la duració mínima. També pot acceptar un cop curt.
+- **Altres durades de bloc:** 5, 10, 20, 30, 40 i 120 ms. Les esperes es converteixen a blocs de la durada corresponent.
+
+Les tres regles s’inspiren en [Martínez–Urioste, PR #8](https://github.com/albino-pav/P2/pull/8). Variar el bloc surt de [Pascual–Sánchez, PR #9](https://github.com/albino-pav/P2/pull/9). He adaptat les idees al meu programa; els valors es tornen a buscar.
+
+En aquesta prova mantinc els onze interruptors de la combinació que donava 96,186 %. Provo les vuit barreges de les tres regles noves amb sis durades de bloc: **48 casos**. No és una cerca de totes les barreges possibles de les catorze regles.
+
+Per a cada cas torno a ajustar els valors amb tres inicis genèrics. Els temps es busquen en mil·lisegons i es passen a blocs sencers. També ajusto el factor de baixada del soroll i la diferència màxima entre veu i soroll. El primer va d’1 a 15 i el segon de 30 a 80 dB. El pas es va reduint fins a 0,1 i 0,5 dB.
+
+Quan canvio la durada del bloc, també adapto alfa per mantenir una velocitat comparable. El nivell de veu fa una mitjana suau dels blocs confirmats com a veu o pendents de silenci. Les quatre opcions noves estan apagades per defecte i el bloc continua sent de 10 ms.
+
+He provat **42.790 configuracions** i he comprovat els **48 casos** amb el binari normal i el Perl. Cap inici ha esgotat el límit de voltes.
+
+| Bloc | Millor TOTAL |
+|---:|---:|
+| 5 ms | 96,417 % |
+| 10 ms | 96,838 % |
+| 20 ms | 96,910 % |
+| 30 ms | 96,775 % |
+| 40 ms | 96,847 % |
+| 120 ms | 95,737 % |
+
+El millor resultat és **96,910 %**, davant del 96,186 % anterior. La millor prova fa servir blocs de 20 ms. Les regles noves actives són: soroll a dues velocitats i límit segons la veu. El factor de baixada és 9.25. La diferència màxima entre veu i soroll és 41.25 dB.
+
+El bloc de 120 ms dona un resultat pitjor. Les esperes no es poden ajustar amb gaire detall si cada bloc ja dura tant. En aquest estudi no he agafat les 24 trames del PR com si fossin 240 ms: sempre faig la conversió amb la durada real.
+
+### Matriu de les 48 proves
+
+✓ vol dir activat. A cada fila hi ha el millor ajust trobat per a aquella barreja.
+
+| Bloc | Dues velocitats | Límit segons veu | Entrada directa | TOTAL |
+|---:|:---:|:---:|:---:|---:|
+| 5 ms | — | — | — | 95,813 % |
+| 5 ms | — | — | ✓ | 95,857 % |
+| 5 ms | — | ✓ | — | 96,394 % |
+| 5 ms | — | ✓ | ✓ | 96,386 % |
+| 5 ms | ✓ | — | — | 95,934 % |
+| 5 ms | ✓ | — | ✓ | 95,857 % |
+| 5 ms | ✓ | ✓ | — | 96,417 % |
+| 5 ms | ✓ | ✓ | ✓ | 96,386 % |
+| 10 ms | — | — | — | 96,186 % |
+| 10 ms | — | — | ✓ | 96,009 % |
+| 10 ms | — | ✓ | — | 96,838 % |
+| 10 ms | — | ✓ | ✓ | 96,440 % |
+| 10 ms | ✓ | — | — | 96,080 % |
+| 10 ms | ✓ | — | ✓ | 95,988 % |
+| 10 ms | ✓ | ✓ | — | 96,824 % |
+| 10 ms | ✓ | ✓ | ✓ | 96,484 % |
+| 20 ms | — | — | — | 96,198 % |
+| 20 ms | — | — | ✓ | 96,191 % |
+| 20 ms | — | ✓ | — | 96,741 % |
+| 20 ms | — | ✓ | ✓ | 96,804 % |
+| 20 ms | ✓ | — | — | 96,175 % |
+| 20 ms | ✓ | — | ✓ | 96,174 % |
+| 20 ms | ✓ | ✓ | — | 96,910 % |
+| 20 ms | ✓ | ✓ | ✓ | 96,782 % |
+| 30 ms | — | — | — | 96,202 % |
+| 30 ms | — | — | ✓ | 96,149 % |
+| 30 ms | — | ✓ | — | 96,737 % |
+| 30 ms | — | ✓ | ✓ | 96,689 % |
+| 30 ms | ✓ | — | — | 96,223 % |
+| 30 ms | ✓ | — | ✓ | 96,178 % |
+| 30 ms | ✓ | ✓ | — | 96,775 % |
+| 30 ms | ✓ | ✓ | ✓ | 96,755 % |
+| 40 ms | — | — | — | 96,138 % |
+| 40 ms | — | — | ✓ | 96,093 % |
+| 40 ms | — | ✓ | — | 96,847 % |
+| 40 ms | — | ✓ | ✓ | 96,781 % |
+| 40 ms | ✓ | — | — | 96,187 % |
+| 40 ms | ✓ | — | ✓ | 96,166 % |
+| 40 ms | ✓ | ✓ | — | 96,810 % |
+| 40 ms | ✓ | ✓ | ✓ | 96,797 % |
+| 120 ms | — | — | — | 95,138 % |
+| 120 ms | — | — | ✓ | 95,138 % |
+| 120 ms | — | ✓ | — | 95,737 % |
+| 120 ms | — | ✓ | ✓ | 95,737 % |
+| 120 ms | ✓ | — | — | 95,113 % |
+| 120 ms | ✓ | — | ✓ | 95,113 % |
+| 120 ms | ✓ | ✓ | — | 95,731 % |
+| 120 ms | ✓ | ✓ | ✓ | 95,731 % |
+
+Els valors exactes són al [CSV de les proves pendents](https://github.com/victor836768/P2/blob/jordi-albareda-proves-pendents/resultats/pendents/matriu.csv). Els resultats continuen sent de `db.v4`; falta veure com va amb àudios nous.
+<!-- final-proves-pendents -->
+
 ## On són les proves
 
 A la branca [jordi-albareda-combinacions](https://github.com/victor836768/P2/tree/jordi-albareda-combinacions):
