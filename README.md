@@ -4,6 +4,9 @@ Jordi Albareda Fortuny · Grup 41 · Lloc 05
 
 En aquesta branca hi ha el detector base, que dona un 95,829 % sobre `db.v4`. Després he fet més proves a `jordi-albareda-combinacions` i he arribat al 96,186 %. Les idees i la taula de combinacions són a [IDEES.md](IDEES.md).
 
+Les proves posteriors són a [`jordi-albareda-proves-pendents`](https://github.com/victor836768/P2/tree/jordi-albareda-proves-pendents): arriben a **96,910 % amb blocs de 20 ms** i **96,838 % amb blocs de 10 ms**. El resum és a [IDEES.md](IDEES.md#proves-que-quedaven-pendents).
+
+
 ## Valors del detector
 
 | Paràmetre | Valor per defecte |
