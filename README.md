@@ -6,6 +6,9 @@ En aquesta branca he provat les idees del detector juntes i per separat. És `jo
 
 Les idees i els resultats estan explicats amb paraules senzilles a [IDEES.md](IDEES.md). També hi ha la [matriu completa](IDEES.md#matriu-de-totes-les-combinacions).
 
+Les proves posteriors són a [`jordi-albareda-proves-pendents`](https://github.com/victor836768/P2/tree/jordi-albareda-proves-pendents): arriben a **96,910 % amb blocs de 20 ms** i **96,838 % amb blocs de 10 ms**. El resum és a [IDEES.md](IDEES.md#proves-que-quedaven-pendents).
+
+
 ## Què he afegit
 
 A més de les vuit idees que ja havia provat, ara hi ha tres opcions més:
