@@ -2,11 +2,9 @@
 
 Jordi Albareda Fortuny · Grup 41 · Lloc 05
 
-Les idees, les proves separades i la comparació de totes les combinacions estan explicades amb paraules senzilles a [IDEES.md](IDEES.md). El programa de l’estudi és a la branca `jordi-albareda-combinacions`. Mantinc aquesta versió d’entrega: la cerca amb onze idees arriba a 96,186 %, davant del 95,829 % d’aquesta base.
+En aquesta branca hi ha el detector base, que dona un 95,829 % sobre `db.v4`. Després he fet més proves a `jordi-albareda-combinacions` i he arribat al 96,186 %. Les idees i la taula de combinacions són a [IDEES.md](IDEES.md).
 
-## Configuració final
-
-La branca d’entrega és `jordi-albareda`. Incorpora el marge configurable, els scripts d’escombratge i la configuració actual d’entrega, verificada amb l’avaluador original.
+## Valors del detector
 
 | Paràmetre | Valor per defecte |
 |---|---:|
@@ -16,21 +14,21 @@ La branca d’entrega és `jordi-albareda`. Incorpora el marge configurable, els
 | Marge sobre el soroll | 5,94 dB |
 | Coeficient d’actualització del soroll | 0,00615 |
 
-**TOTAL sobre les 115 gravacions de `db.v4`: 95,829 %.** Aquest resultat s’obté sense opcions addicionals, tal com s’executarà el programa en l’avaluació cega. Supera la base de 95,474 % en 0,355 punts i l’ajust anterior de marge de 95,653 % en 0,176 punts. No és una mesura de generalització: tots aquests paràmetres s’han ajustat sobre la base de desenvolupament.
+**TOTAL: 95,829 % sobre les 115 gravacions de `db.v4`**, executant el programa sense opcions addicionals. He triat els valors amb aquesta mateixa base; falta veure com va amb els àudios de l’avaluació cega.
 
 ![Afinament final del marge](img/optimitzacio_final.png)
 
-## Ajust reproduïble
+## Proves dels valors
 
 ```sh
 python3 scripts/optimitza_parametres.py
 ```
 
-Necessita un compilador C, NumPy i SoundFile. Calcula les potències amb `compute_power()` i executa el mateix autòmat de `src/vad.c` en una biblioteca temporal. Les etiquetes de referència només s’utilitzen per puntuar les decisions; el detector continua processant un sol bloc cada vegada.
+Per repetir les proves faig servir aquest script amb un compilador C, NumPy i SoundFile. Calcula les potències una vegada i les passa al mateix detector. Les marques manuals només serveixen per calcular la puntuació.
 
-La cerca conjunta prova 13.440 combinacions d’inicialització, duracions mínimes, marge i actualització del soroll. Després afina els cinc paràmetres per coordenades durant tres passades: **14.152 configuracions diferents** en total. Conservo totes les puntuacions a [optimitzacio_final.csv](resultats/optimitzacio_final.csv), ordenades de millor a pitjor. La cerca és finita; el millor resultat provat no garanteix un òptim global ni el mateix resultat sobre dades desconegudes.
+Primer vaig provar 13.440 barreges dels cinc valors. Després vaig mirar els voltants dels millors: en total són **14.152 configuracions**. Les puntuacions són a [optimitzacio_final.csv](resultats/optimitzacio_final.csv). Pot ser que encara hi hagi altres valors que vagin millor.
 
-La configuració seleccionada s’ha recompilat i avaluat sobre els WAVE originals amb `vad_evaluation.pl`, sense usar la biblioteca temporal. [Avaluació final completa](resultats/evaluacio_final.txt).
+Després he comprovat el millor resultat amb el programa normal i el `vad_evaluation.pl` de la pràctica. El resultat complet és a [evaluacio_final.txt](resultats/evaluacio_final.txt).
 
 Per explorar només el marge:
 
@@ -139,26 +137,20 @@ perl scripts/vad_evaluation.pl pav_41XX1.lab
 | Veu | **98,08 %** | **92,54 %** |
 | Silenci | **87,67 %** | **96,70 %** |
 
-El resultat és la mitjana geomètrica `sqrt(F2(veu) * F0.5(silenci))`, no una F1 simple. Respecte de l’ajust anterior de 6,63 dB, augmenta la sensibilitat de veu i baixa la precisió de veu; millora el criteri TOTAL que demana l’enunciat.
+L’avaluador calcula el TOTAL amb `sqrt(F2(veu) * F0.5(silenci))`. Amb aquests valors trobo una mica més de veu que amb l’ajust anterior de 6,63 dB, però també marco més soroll com a veu. El TOTAL queda una mica més alt.
 
 `scripts/run_vad.sh` analitza les 115 gravacions, copia les referències sense modificar-les i desa les prediccions a `resultats/db/llindar_5.94`. L’avaluador afegeix silenci al final de tres referències més curtes que l’àudio. [Resultat complet](resultats/evaluacio_final.txt).
 
 No faig servir la gravació personal per ajustar els paràmetres. El detector pot fallar si la veu comença durant la inicialització o si el soroll canvia bruscament.
 
-## Comprovacions
+## Com ho he comprovat
 
 - Compilació sense avisos i recompilació de les dependències amb Ninja.
 - Sortides amb només `S` i `V`, contínues i amb la durada real dels 115 àudios.
 - Clics curts, pauses dins de la veu, decisions pendents al final i blocs incomplets.
 - Àudios curts, silenci absolut, 8/16/48 kHz i errors d'entrada o sortida.
 
-[Comprovació de la versió final](resultats/comprovacio_final.txt): compilació neta, 115 sortides idèntiques al binari avaluat i casos sintètics a 8, 16 i 48 kHz. Els registres anteriors es conserven com a historial.
-
-[Registre de proves anterior](resultats/proves.txt).
-
-[Comprovacions de `-l`, `run_vad.sh` i `cardem-li`](resultats/proves_bash.txt).
-
-[Comprovacions dels escombratges decimals i del rànquing](resultats/proves_escombratge.txt).
+Les proves de la versió actual són a [comprovacio_final.txt](resultats/comprovacio_final.txt). Els altres registres de `resultats/` corresponen a les proves que havia fet abans.
 
 ## Extres
 
@@ -178,7 +170,7 @@ Per regenerar les figures en aquest Mac, amb l'entorn Python de P1:
 ../P1/.venv/bin/python scripts/visualitza_wavesurfer.py --export
 ```
 
-Sense `--export`, el segon script obre els panells interactius de WaveSurfer. Els scripts de figures necessiten NumPy, Matplotlib i SoundFile.
+Sense `--export`, `visualitza_wavesurfer.py` obre els panells de WaveSurfer. Els scripts de figures necessiten NumPy, Matplotlib i SoundFile.
 
 ## Entrega
 
